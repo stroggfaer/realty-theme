@@ -1,0 +1,334 @@
+.property-detail {
+    margin-bottom: 30px;
+    h3.title {
+        margin-bottom: 24px;
+        margin-top: 0px;
+    }
+
+    .property-columns {
+        display: grid;
+        grid-template-columns: 1fr 400px;
+        gap: 30px;
+
+        /* Адаптивность для планшетов и мобильных */
+        @media (max-width: 1024px) {
+            grid-template-columns: 1fr;
+        }
+    }
+    // Контейнер галереи недвижимости
+    .property-gallery-container {
+        .property-gallery {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        /* Основной слайдер занимает всё свободное место */
+        .main-slider-wrapper {
+            flex-grow: 1;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .main-slider-wrapper img {
+            width: 100%;
+            height: 500px; /* Фиксированная высота или aspect-ratio */
+            object-fit: cover;
+        }
+
+        /* Миниатюры справа */
+        .thumb-slider-wrapper {
+            flex-shrink: 0;
+        }
+
+        .thumb-slider-wrapper .splide__slide {
+            opacity: 0.6;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: opacity 0.3s, border 0.3s;
+        }
+
+        .thumb-slider-wrapper .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Активная миниатюра */
+        .thumb-slider-wrapper .splide__slide.is-active {
+            opacity: 1;
+            border: 2px solid $color-site;
+        }
+
+        /* Одиночное изображение */
+        .property-gallery-single {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            
+            img,
+            .property-gallery-image,
+            .property-featured-image {
+                width: 100%;
+                height: auto;
+                max-height: 500px;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        /* Адаптивность для мобилок */
+        @media (max-width: 768px) {
+            .property-gallery {
+                flex-direction: column;
+            }
+            .thumb-slider-wrapper {
+                width: 100%;
+                
+                .splide__track {
+                    padding-bottom: 10px;
+                }
+                
+                .splide__list {
+                    display: flex;
+                    gap: 8px;
+                }
+                
+                .splide__slide {
+                    width: 80px !important;
+                    height: 60px !important;
+                    flex-shrink: 0;
+                }
+                
+                .splide__slide img {
+                    width: 100%;
+                    height: 60px;
+                    object-fit: cover;
+                }
+            }
+            
+            .main-slider-wrapper img {
+                height: 300px;
+            }
+            
+            .property-gallery-single img,
+            .property-gallery-single .property-gallery-image,
+            .property-gallery-single .property-featured-image {
+                max-height: 300px;
+            }
+        }
+    }
+
+    /* Базовые стили для контейнера */
+    .property-contact-card {
+        border: 1px solid $color-border;
+        border-radius: $border-radius;
+        padding: 24px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        background: $color-white;
+        .material-symbols-outlined {
+            color: $color-green;
+        }
+        position: sticky;
+        top: 20px;
+    }
+    .property-aside {
+        width: 400px;
+        color: $color-black;
+        height: 100%;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 24px;
+        }
+
+        .price {
+            .amount {
+                font-size: 26px;
+                font-weight: 700;
+            }
+
+            .period {
+                font-size: 16px;
+                color: $color-dark-grey;
+            }
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+        }
+
+        .star-icon {
+            font-size: 18px !important;
+            font-variation-settings: 'FILL' 1;
+        }
+
+        .reviews-count {
+            color: $color-dark-grey;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        /* Блок профиля */
+        .host-info {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            border: 1px solid $color-border-ling;
+            border-radius: $border-radius;
+            margin-bottom: 24px;
+            background-color: rgb(250 250 249 / 1)
+        }
+        .host-details {
+            h3 {
+                margin: 0;
+                font-size: 16px;
+                font-weight: 600;
+            }
+
+            .hint {
+                margin: 2px 0 0 0;
+                font-size: 12px;
+                line-height: 16px;
+                color: $color-dark-grey;
+                font-weight: 300;
+            }
+        }
+
+        /* Кнопки */
+        .contact-card-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        /* Футер */
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            color: $color-dark-grey;
+        }
+
+        .card-footer p {
+            font-size: 12px;
+            margin: 0;
+        }
+
+        .security-icon {
+            font-size: 18px !important;
+            color: $color-light-grey;
+        }
+    }
+
+    .entry-header {
+        display: flex;
+        margin-top: 40px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        .action {
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+            @include ease();
+            .material-symbols-outlined {
+                color: $color-green;
+                opacity: 1;
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+            .favorite {
+                &.active span {
+                    color: $color-green;
+                    font-variation-settings: "FILL" 1;
+                }
+            }
+        }
+    }
+    .location {
+        display: flex;
+        margin-top: 10px;
+        align-items: center;
+        gap: 8px;
+        color: $color-dark-grey-2;
+        margin-bottom: 20px;
+        .material-symbols-outlined {
+            color: $color-dark-grey-2;
+        }
+    }
+    .property-features-title {
+        font-size: 20px;
+        font-weight: 300;
+        margin-bottom: 12px;
+    }
+    .property-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 40px;
+        border-top: 1px solid $color-border-ling;
+        @media (max-width: 768px) {
+            gap: 20px;
+        }
+    }
+
+    .property-description {
+        font-size: 18px;
+        font-weight: 300;
+    }
+
+    .section-property {
+        padding: 20px 0;
+        border-bottom: 1px solid $color-border-ling;
+        .action {
+            display: flex;
+            justify-content: end;
+            margin-top: 10px;
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+    .property-rules {
+        .characteristics-grid__com + .characteristics-grid__com {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid $color-border-ling;
+        }
+    }
+}
+
+
+.property-booking-sidebar {
+  .booking-dates,.booking-guests {
+      margin-bottom: 8px;
+  }
+}
+.splide.thumb-slider-wrapper {
+    border-radius: 8px;
+    overflow: hidden;
+}
+//
+.property-gallery {
+    .splide__arrow {
+        background: $color-black !important;
+        display: none;
+        svg {
+            fill: #fff;
+        }
+    }
+    &:hover {
+        .splide__arrow {
+            display: flex;
+        }
+    }
+}

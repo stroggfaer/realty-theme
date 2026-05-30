@@ -1,0 +1,48 @@
+// Стили для футера
+.footer {
+    background-color: $color-white;
+    color: $color-white;
+    padding: 20px 0 20px;
+    border-top: 1px solid $color-medium-grey-2;
+    flex-shrink: 0;
+    position: relative;
+    margin-top: auto;
+
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .footer__copyright {
+    font-size: 14px;
+    font-weight: 300;
+    color: $color-dark-grey;
+  }
+
+  .footer__social {
+    display: flex;
+    gap: 20px;
+  }
+
+  .footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: $color-light-grey;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer__social-link:hover {
+    color: $color-black-medium;
+  }
+
+  /* Дополнительно: улучшаем доступность */
+  footer a:focus {
+    outline: 2px solid $color-blue;
+    outline-offset: 2px;
+  }
+}

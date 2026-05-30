@@ -1,0 +1,43 @@
+{
+  "name": "realty-theme",
+  "version": "1.0.0",
+  "description": "WordPress theme for real estate with SASS support",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch assets/sass/main.scss:assets/css/main.css",
+    "build:css": "npx webpack --config webpack.config.js --mode=production",
+    "watch:css": "npx webpack --config webpack.config.js --watch --mode=development",
+    "vue-build": "npx webpack --config webpack.vue.config.js --mode=production",
+    "vue-watch": "npx webpack --config webpack.vue.config.js --watch --mode=development"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 1%"
+  ],
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.0",
+    "@vue/compiler-sfc": "^3.4.0",
+    "autoprefixer": "^10.4.18",
+    "babel-loader": "^9.1.3",
+    "css-loader": "^6.10.0",
+    "cssnano": "^6.0.5",
+    "file-loader": "^6.2.0",
+    "mini-css-extract-plugin": "^2.8.1",
+    "node-sass": "^9.0.0",
+    "postcss-cli": "^11.0.0",
+    "postcss-loader": "^8.1.1",
+    "sass-loader": "^14.1.1",
+    "style-loader": "^3.3.4",
+    "terser-webpack-plugin": "^5.3.10",
+    "unplugin-auto-import": "^21.0.0",
+    "unplugin-vue-components": "^31.0.0",
+    "vue-loader": "^17.4.2",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "element-plus": "^2.13.5",
+    "moment": "^2.30.1",
+    "sass": "^1.32.0"
+  }
+}

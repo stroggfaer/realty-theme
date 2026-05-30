@@ -1,0 +1,89 @@
+/**
+ * Стили бокового меню личного кабинета
+ */
+
+.my-sidebar {
+  width: 240px;
+  flex: 0 0 240px;
+  height: 100%;
+  box-sizing: border-box;
+  .wrap-sidebar {
+    background: $color-white;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 0;
+    box-shadow: var(--shadow-btn);
+    margin: 15px 0px;
+    border-radius: var(--radius-xl);
+    height: calc(100vh - 160px);
+    position: sticky;
+    top: 24px;
+  }
+}
+
+.my-sidebar-nav {
+  flex: 1;
+  padding: 0 1rem;
+}
+
+.my-sidebar-footer {
+  border-top: 1px solid $color-border;
+  padding: 1rem;
+}
+
+.my-sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: $border-radius;
+  text-decoration: none;
+  color: $color-dark-grey-2;
+  transition: all 0.2s ease;
+  margin-bottom: 0.25rem;
+
+  &:hover {
+    color: $color-site;
+
+    .material-symbols-outlined {
+      color: $color-site;
+    }
+  }
+
+  &--active {
+    color: $color-site;
+    .material-symbols-outlined {
+      color: $color-site !important;
+    }
+    font-weight: 500;
+    &:hover {
+
+    }
+  }
+
+  &--logout {
+    color: $color-red-btn;
+    .material-symbols-outlined {
+      color: $color-red-btn !important;
+    }
+    &:hover {
+      color: $color-red;
+    }
+  }
+
+  .material-symbols-outlined {
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-dark-grey;
+    transition: color 0.2s ease;
+  }
+
+  .my-sidebar-label {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}

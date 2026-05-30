@@ -1,0 +1,766 @@
+/*
+Theme Name: realty-theme
+Theme URI:
+Author: Rendzhi
+Description: Недвижимость
+Version: 1.2
+License: GNU General Public License
+
+-------------------------------------------------------------- */
+/* Reset
+-------------------------------------------------------------- */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  vertical-align: baseline;
+  font: inherit;
+  font-size: 100%;
+  font-family: 'Manrope', sans-serif;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+html {
+  margin: 0;
+  padding: 0;
+  font-size: 62.5%;
+  /* Corrects text resizing oddly in IE6/7 when body font-size is set using em units http://clagnut.com/blog/348/#c790 */
+
+  -webkit-text-size-adjust: 100%;
+  /* Prevents iOS text size adjust after orientation change, without disabling user zoom */
+
+  -ms-text-size-adjust: 100%;
+  /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
+
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+code,
+kbd,
+tt,
+var {
+  font: 15px Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
+}
+abbr,
+acronym {
+  border-bottom: 1px dotted #666;
+  cursor: help;
+}
+mark,
+ins {
+  background: #fff9c0;
+  text-decoration: none;
+}
+sup,
+sub {
+  font-size: 75%;
+  height: 0;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  bottom: 1ex;
+}
+sub {
+  top: .5ex;
+}
+small,.small {
+  font-size: 75%;
+  line-height: 16px;
+}
+big {
+  font-size: 125%;
+}
+figure {
+  margin: 0;
+}
+table {
+  margin: 0 0 1.5em;
+  width: 100%;
+}
+th {
+  font-weight: bold;
+}
+button,
+input,
+select,
+textarea {
+  font-size: 100%;
+  /* Corrects font size not being inherited in all browsers */
+
+  margin: 0;
+  /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
+
+  vertical-align: baseline;
+  vertical-align: middle;
+  /* Improves appearance and consistency in all browsers */
+
+}
+
+input {
+  line-height: normal;
+  /* Addresses FF3/4 setting line-height using !important in the UA stylesheet */
+
+  overflow: visible;
+  /* Corrects inner spacing displayed oddly in IE6/7 */
+
+}
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+}
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* Addresses appearance set to searchfield in S5, Chrome */
+
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* Addresses box sizing set to border-box in S5, Chrome (include -moz to future-proof) */
+
+  box-sizing: content-box;
+}
+input[type="search"]::-webkit-search-decoration {
+  /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
+
+  -webkit-appearance: none;
+}
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  /* Corrects inner padding and border displayed oddly in FF3/4 www.sitepen.com/blog/2008/05/14/the-devils-in-the-details-fixing-dojos-toolbar-buttons/ */
+
+  border: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+/* styles
+-------------------------------------------------------------- */
+body,
+button,
+input,
+select {
+  padding: 0;
+  margin: 0;
+  background: #ffffff;
+  line-height: 24px;
+  font-size: 16px;
+
+}
+@media screen and (max-width:  420px) {
+  body,
+  button,
+  input,
+  select {
+    line-height: 20px;
+    font-size: 14px;
+  }
+}
+/* typography
+-------------------------------------------------------------- */
+/* Headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  clear: both;
+  color: #000;
+}
+h1 {
+  line-height: 45px;
+  font-size: 40px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+h2 {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 500;
+}
+h3 {
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 150%;
+  color: #000000;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+h4 {
+  line-height: 26px;
+  font-size: 24px;
+  font-weight: 500;
+}
+@media screen and (max-width: 992px) {
+  h1 {
+    line-height: 36px;
+    font-size: 38px;
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+  h3 {
+    line-height: 24px;
+    font-size: 24px;
+    font-weight: 500;
+  }
+  h4 {
+    line-height: 26px;
+    font-size: 22px;
+    font-weight: 500;
+  }
+}
+@media screen and (max-width: 420px) {
+  h1 {
+    line-height: 32px;
+    font-size: 30px;
+    font-weight: 600;
+  }
+  h2 {
+    font-size: 24px;
+    line-height: 21px;
+    font-weight: 600;
+  }
+  h3 {
+    line-height: 20px;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  h4 {
+    line-height: 19px;
+    font-size: 18px;
+    font-weight: 500;
+  }
+}
+hr {
+  background-color: #ccc;
+  border: 0;
+  height: 1px;
+  margin-bottom: 1.5em;
+}
+/* Text elements */
+p {
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+@media screen and (max-width:  420px) {
+  p {
+    margin-bottom: 0.5em;
+    margin-top: 0.5em;
+  }
+}
+ul,
+ol {
+  margin: 0 0 1.5em 3em;
+}
+ul {
+  list-style: disc;
+}
+ol {
+  list-style: decimal;
+}
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  margin-bottom: 0;
+  margin-left: 1.5em;
+}
+dt {
+  font-weight: bold;
+}
+dd {
+  margin: 0 1.5em 1.5em;
+}
+b,
+strong {
+  font-weight: bold;
+}
+dfn,
+cite,
+em,
+i {
+  font-style: italic;
+}
+blockquote {
+  margin: 0 1.5em;
+}
+address {
+  margin: 0 0 1.5em;
+}
+/* Links */
+a {
+  color: #F78522;
+  -webkit-transition: color 0.25s ease-in-out;
+  -moz-transition: color 0.25s ease-in-out;
+  -o-transition: color 0.25s ease-in-out;
+  -ms-transition: color 0.25s ease-in-out;
+  transition: color 0.25s ease-in-out;
+  text-decoration: none;
+}
+a:hover,
+a:focus,
+a:active {
+  color: rgba(247, 133, 34, 0.6)
+}
+/* Alignment */
+.alignleft {
+  display: inline;
+  float: left;
+  margin-right: 1.5em;
+}
+.alignright {
+  display: inline;
+  float: right;
+  margin-left: 1.5em;
+}
+.aligncenter {
+  clear: both;
+  display: block;
+  margin: 0 auto;
+}
+.center {
+  text-align: center;
+}
+/* Header
+-------------------------------------------------------------- */
+.site-title a{
+  text-transform: uppercase;
+  font-size: 4em;
+  text-align: center;
+}
+.site-title a:hover{
+}
+.site-description{
+  font-style: italic;
+}
+
+/* Posts/Articles
+-------------------------------------------------------------- */
+article .post-meta a {
+  color: #888888;
+  text-decoration: none;
+}
+article .post-meta a:hover {
+  color: rgba(136, 136, 136, 0.5);
+}
+article .the-content a {
+  font-weight: 900;
+  text-decoration: none;
+}
+article .the-content p {
+  color: #191919;
+  text-align: justify;
+}
+article .the-content img {
+  width: 100%;
+  height: auto;
+}
+article .meta {
+  line-height: 14.8px;
+  font-size: 10px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: .9px;
+}
+article .meta div {
+  margin:1px auto;
+}
+article .meta .post-categories {
+  list-style: none;
+  margin: 0 0 10px 0;
+}
+article .meta .post-categories li {
+  display: inline-block;
+  margin-right: 10px;
+}
+/* Page loop styling */
+.page article {
+  border-bottom: none;
+}
+.page article .title {
+  margin-bottom: 40px;
+}
+/* Pagination */
+#pagination {
+  margin-bottom: 40px;
+  width: 100%;
+}
+#pagination .past-page {
+  float: right;
+  width: 49%;
+  text-align:right;
+}
+#pagination .next-page {
+  float: left;
+  width: 50%;
+  border-right: 1px solid #ccc;
+  height: 200px;
+}
+.next-page a, .past-page a {
+  font-size: 2em;
+  font-family: "Quicksand", Helvetica, sans-serif;
+  font-weight: 400;
+  font-style: italic;
+  padding: 10%;
+}
+/* Comments */
+h3#comments {
+  margin-bottom: 80px;
+  font-size: 16px;
+}
+.commentlist {
+  list-style: none;
+  margin: 0;
+}
+.commentlist .comment {
+  margin: 0 0 40px 50px;
+  padding: 20px;
+  position: relative;
+  list-style: none;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.commentlist .comment .children {
+  margin-top: 40px;
+}
+.commentlist .comment-author {
+  float: left;
+  margin-right: 10px;
+}
+.commentlist .comment-author img {
+  position: absolute;
+  left: -50px;
+  top: 5px;
+  -moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+.commentlist .comment-author .says {
+  display: none;
+}
+.comment-meta {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.comment-subscription-form,
+.comment-subscription-form {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+#respond {
+  margin-bottom: 80px;
+}
+#respond > h3 {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+#respond form label {
+  color: #888888;
+}
+@media screen and (max-width: 700px) {
+  #respond {
+    margin-bottom: 20px;
+  }
+}
+
+/* Misc & mixens
+-------------------------------------------------------------- */
+.site-footer{
+}
+.hide-text {
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+.clear {
+  clear: both;
+}
+/* clear floats */
+.clearfix:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+.clearfix {
+  display: inline-block;
+}
+html[xmlns] .clearfix {
+  display: block;
+}
+* html .clearfix {
+  height: 1%;
+}
+.entry-title {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.entry-title a {
+    text-decoration: none;
+    color: #333;
+}
+
+.entry-summary {
+    margin: 10px 0;
+    color: #555;
+    line-height: 1.4;
+}
+
+.more-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #007cba;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.more-link:hover {
+    background: #005a87;
+}
+
+.no-properties {
+    text-align: center;
+    padding: 40px;
+    color: #666;
+}
+
+.archive-pagination {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.archive-pagination a,
+.archive-pagination span {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 2px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.archive-pagination a:hover {
+    background: #f5f5f5;
+}
+
+.archive-pagination .current {
+    background: #007cba;
+    color: white;
+    border-color: #007cba;
+}
+
+/* Highlighted property card */
+.property-card.highlighted {
+    border: 2px solid #007cba;
+    box-shadow: 0 4px 8px rgba(0, 124, 186, 0.3);
+    transform: translateY(-2px);
+}
+
+
+
+/* Active Filters Notification */
+.active-filters-notification {
+    background: #e7f3ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.active-filters-notification p {
+    margin: 0;
+    color: #004085;
+    font-size: 0.9rem;
+}
+
+.active-filters-notification strong {
+    color: #004085;
+}
+
+/* Validation Errors Display */
+.validation-errors {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    color: #721c24;
+}
+
+.validation-errors ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.validation-errors li {
+    margin-bottom: 5px;
+}
+
+.validation-errors li:last-child {
+    margin-bottom: 0;
+}
+
+/* Active Filters Notification */
+.active-filters-notification {
+    background: #e7f3ff;
+    border: 1px solid #b3d9ff;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+.active-filters-notification p {
+    margin: 0;
+    color: #004085;
+    font-size: 0.9rem;
+}
+
+.active-filters-notification strong {
+    color: #004085;
+}
+
+/* Validation Errors Display */
+.validation-errors {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+    color: #721c24;
+}
+
+.validation-errors ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.validation-errors li {
+    margin-bottom: 5px;
+}
+
+.validation-errors li:last-child {
+    margin-bottom: 0;
+}
+

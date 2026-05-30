@@ -1,0 +1,27 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+// настройки
+@import "_mixins";
+@import "_vars";
+// Element Plus глобальные стили
+@import "components/_element-plus-global";
+// Стили;
+@import "components/_component";
+@import "components/_layout";
+@import "components/_content";
+@import "components/_form";
+@import "components/_single-property";
+@import "components/_property-filter";
+@import "site/footer";
+@import "archive-property";
+@import "archive-list";
+// Модуль "Мой кабинет"
+@import "my";
+@import "site/page.scss";

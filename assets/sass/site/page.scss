@@ -1,0 +1,97 @@
+.page-wrapper {
+    padding: 40px 0;
+}
+
+.page-card {
+    border-radius: $border-radius;
+    padding: 0px 20px;
+}
+
+.page-header {
+    margin-bottom: 30px;
+
+    .title {
+        font-family: $base-font;
+        font-size: 36px;
+        font-weight: 700;
+        color: $color-site; // Dark teal/green
+        margin: 0 0 15px 0;
+        line-height: 1.2;
+    }
+
+    .page-meta {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+        color: $color-dark-grey-2;
+        font-weight: 400;
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            i {
+                font-size: 13px;
+                color: $color-grey-3;
+            }
+        }
+    }
+}
+
+.the-content {
+    font-family: $base-font;
+    color: $color-black-lite;
+    line-height: 1.8;
+    font-size: 16px;
+
+    // Lead paragraph styling (the first p)
+    p:first-of-type {
+        font-style: italic;
+        font-size: 18px;
+        color: $color-dark-grey-2;
+        margin-bottom: 30px;
+        line-height: 1.6;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    h2, h3 {
+        color: $color-site; // Dark teal/green as per screenshot
+        font-weight: 700;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        line-height: 1.3;
+
+        h2 {
+            font-size: 26px;
+        }
+
+        h3 {
+            font-size: 22px;
+        }
+    }
+
+    ul {
+        margin-bottom: 25px;
+        padding-left: 25px;
+        list-style: disc;
+
+        li {
+            margin-bottom: 12px;
+            color: $color-black-lite;
+        }
+    }
+
+    a {
+        color: $color-site;
+        text-decoration: none;
+        transition: color 0.3s ease;
+
+        &:hover {
+            color: $color-a-hover;
+        }
+    }
+}

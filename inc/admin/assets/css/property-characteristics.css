@@ -1,0 +1,417 @@
+/**
+ * Стили для метабокса "Характеристики" объекта недвижимости
+ * 
+ * Двухколоночный layout с drag-and-drop
+ */
+
+.property-characteristics-metabox {
+    margin: 0;
+    padding: 0;
+}
+
+.property-characteristics-metabox .metabox-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    min-height: 300px;
+}
+
+.property-characteristics-metabox h3 {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    padding: 0;
+    color: #1d2327;
+}
+
+/* Левая колонка */
+.property-characteristics-metabox .metabox-column-left {
+    background: #f6f7f7;
+    padding: 15px;
+    border: 1px solid #c3c4c7;
+}
+
+.property-characteristics-metabox .groups-list {
+    list-style: none;
+    margin: 0 0 20px 0;
+    padding: 0;
+    border-bottom: 1px solid #dcdcde;
+    padding-bottom: 15px;
+}
+
+.property-characteristics-metabox .group-item {
+    padding: 8px 12px;
+    margin: 4px 0;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.property-characteristics-metabox .group-item:hover {
+    background: #f6f7f7;
+    border-color: #2271b1;
+}
+
+.property-characteristics-metabox .group-item.active {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+.property-characteristics-metabox .group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.property-characteristics-metabox .group-count {
+    background: #dcdcde;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.property-characteristics-metabox .group-item.active .group-count {
+    background: #fff;
+    color: #2271b1;
+}
+
+.property-characteristics-metabox .group-name {
+    font-weight: 500;
+}
+
+.property-characteristics-metabox .group-item .dashicons {
+    color: #a7aaad;
+    cursor: move;
+}
+
+.property-characteristics-metabox .group-item:hover .dashicons {
+    color: #50575e;
+}
+
+.property-characteristics-metabox .group-item-placeholder {
+    background: #d9f0ff;
+    border: 2px dashed #2271b1;
+    min-height: 36px;
+}
+
+.property-characteristics-metabox .description {
+    font-size: 11px;
+    color: #646970;
+    margin: 0 0 8px 0;
+}
+
+.property-characteristics-metabox .no-groups-notice {
+    padding: 15px;
+    color: #646970;
+    font-style: italic;
+}
+
+/* Выбранные группы */
+.property-characteristics-metabox .selected-groups {
+    min-height: 100px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.property-characteristics-metabox .selected-group {
+    margin-bottom: 15px;
+}
+
+.property-characteristics-metabox .selected-group:last-child {
+    margin-bottom: 0;
+}
+
+.property-characteristics-metabox .selected-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    background: #f0f0f1;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px 4px 0 0;
+    font-weight: 600;
+    cursor: move;
+}
+
+.property-characteristics-metabox .selected-group-header .dashicons {
+    color: #a7aaad;
+    cursor: move;
+}
+
+.property-characteristics-metabox .selected-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #c3c4c7;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.property-characteristics-metabox .selected-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 10px;
+    border-bottom: 1px solid #dcdcde;
+}
+
+.property-characteristics-metabox .selected-item:last-child {
+    border-bottom: none;
+}
+
+.property-characteristics-metabox .selected-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin: 4px;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    cursor: move;
+    transition: background 0.2s;
+}
+
+/* Placeholders для drag-and-drop */
+.property-characteristics-metabox .group-item-placeholder {
+    background: #d9f0ff;
+    border: 2px dashed #2271b1;
+    min-height: 36px;
+    border-radius: 4px;
+}
+
+.property-characteristics-metabox .selected-group-placeholder {
+    background: #d9f0ff;
+    border: 2px dashed #2271b1;
+    min-height: 60px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.property-characteristics-metabox .selected-item-placeholder {
+    background: #d9f0ff;
+    border: 2px dashed #2271b1;
+    min-height: 36px;
+}
+
+.property-characteristics-metabox .selected-item:hover {
+    background: #f6f7f7;
+}
+
+.property-characteristics-metabox .selected-item-placeholder {
+    background: #d9f0ff;
+    border: 2px dashed #2271b1;
+    min-height: 36px;
+}
+
+.property-characteristics-metabox .no-selection-notice {
+    padding: 30px 15px;
+    color: #646970;
+    text-align: center;
+    font-style: italic;
+    width: 100%;
+}
+
+.property-characteristics-metabox .drag-handle {
+    color: #a7aaad;
+    cursor: move;
+    font-size: 14px;
+}
+
+.property-characteristics-metabox .selected-item:hover .drag-handle {
+    color: #50575e;
+}
+
+.property-characteristics-metabox .char-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+}
+
+.property-characteristics-metabox .char-icon .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-size: 20px;
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+}
+
+.property-characteristics-metabox .char-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.property-characteristics-metabox .char-title {
+    flex: 1;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.property-characteristics-metabox .remove-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    color: #d63638;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+}
+
+.property-characteristics-metabox .remove-btn:hover {
+    background: #d63638;
+    color: #fff;
+}
+
+/* Правая колонка */
+.property-characteristics-metabox .metabox-column-right {
+    background: #f6f7f7;
+    padding: 15px;
+    border: 1px solid #c3c4c7;
+}
+
+.property-characteristics-metabox .available-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.property-characteristics-metabox .characteristics-search {
+    flex: 1;
+    padding: 6px 10px;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
+.property-characteristics-metabox .characteristics-search:focus {
+    border-color: #2271b1;
+    outline: none;
+    box-shadow: 0 0 0 1px #2271b1;
+}
+
+.property-characteristics-metabox .characteristics-per-page {
+    padding: 6px 8px;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    font-size: 13px;
+    background: #fff;
+    min-width: 60px;
+}
+
+.property-characteristics-metabox .available-characteristics {
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.property-characteristics-metabox .characteristics-source-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.property-characteristics-metabox .characteristic-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    margin: 4px 0;
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.property-characteristics-metabox .characteristic-item:hover {
+    background: #f6f7f7;
+    border-color: #2271b1;
+}
+
+.property-characteristics-metabox .characteristic-item.selected {
+    background: #d9f0ff;
+    border-color: #2271b1;
+    opacity: 0.6;
+}
+
+.property-characteristics-metabox .already-selected {
+    color: #2271b1;
+    font-weight: bold;
+    margin-left: auto;
+}
+
+.property-characteristics-metabox .no-characteristics-notice,
+.property-characteristics-metabox .no-groups-available {
+    padding: 30px 15px;
+    color: #646970;
+    text-align: center;
+}
+
+.property-characteristics-metabox .no-groups-available a {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Пагинация */
+.property-characteristics-metabox .characteristics-pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #dcdcde;
+    flex-wrap: wrap;
+}
+
+.property-characteristics-metabox .page-btn {
+    min-width: 32px;
+    height: 32px;
+    padding: 0 8px;
+    font-size: 12px;
+}
+
+.property-characteristics-metabox .page-btn.current {
+    background: #2271b1;
+    border-color: #2271b1;
+    color: #fff;
+}
+
+.property-characteristics-metabox .pagination-info {
+    font-size: 11px;
+    color: #646970;
+    margin-left: auto;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 782px) {
+    .property-characteristics-metabox .metabox-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .property-characteristics-metabox .metabox-column-left,
+    .property-characteristics-metabox .metabox-column-right {
+        min-height: auto;
+    }
+}

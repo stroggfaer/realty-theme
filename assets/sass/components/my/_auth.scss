@@ -1,0 +1,287 @@
+/**
+ * Стили страницы авторизации / регистрации
+ * Vue3 + Element Plus
+ */
+
+///* ── Страница ─────────────────────────────────────────────── */
+.auth-page {
+  padding-top: 64px;
+  padding-bottom: 64px;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #f5f4f0;
+  font-size: 16px;
+}
+
+/* ── Заголовок ────────────────────────────────────────────── */
+.auth-page__hero {
+  text-align: center;
+  margin-bottom: 54px;
+}
+
+.auth-page__title {
+  line-height: 34px;
+  font-size: 32px;
+  color: $color-black-normal;
+}
+
+.auth-page__subtitle {
+  color: $color-dark-grey-2;
+  max-width: 360px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* ── Карточка ─────────────────────────────────────────────── */
+.auth-page__card {
+  width: 100%;
+  max-width: 500px;
+  background: $color-white;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* ── Табы ─────────────────────────────────────────────────── */
+.auth-tabs {
+  display: flex;
+  border-bottom: 1px solid $color-grey;
+}
+
+.auth-tabs__btn {
+  flex: 1;
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: $color-dark-grey;
+  padding: 24px 0px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+  margin-bottom: -1px;
+  &:hover {
+    color: $color-black;
+  }
+  &--active {
+    color: $color_green;
+    border-bottom-color: $color_green;
+    &:hover {
+      color: $color_green;
+    }
+  }
+}
+
+/* ── Форма ────────────────────────────────────────────────── */
+.auth-form {
+  padding: 30px;
+  .el-form {
+    margin-bottom: 40px;
+  }
+  .auth-form__submit {
+    width: 100%;
+  }
+  /* Строка лейбла с ссылкой "Забыли пароль?" */
+  .auth-form__label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+
+  /* Алерт ошибки */
+  .auth-form__alert {
+    margin-bottom: 1rem;
+    border-radius: 10px;
+  }
+
+  /* Чекбокс согласия */
+  .auth-form__consent-link {
+    color: $color-site;
+    text-decoration: none;
+    font-weight: 500;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+
+  /* Разделитель */
+  .auth-form__divider {
+    height: 1px;
+    background: $color-grey;
+    margin: 1.5rem 0;
+  }
+
+  /* Футер формы */
+  .auth-form__footer {
+    text-align: center;
+    padding-bottom: 0.5rem;
+    p {
+      padding: 0px;
+      margin: 5px 0px;
+    }
+  }
+
+  .auth-form__footer-hint {
+    color: $color-dark-grey-2;
+    margin: 0 0 0.25rem;
+  }
+
+  .auth-form__footer-cta {
+
+  }
+
+  .auth-form__footer-link {
+     color: $color-site;
+     font-weight: 600;
+  }
+}
+/* ── User Menu в Header ───────────────────────────────────── */
+.user-menu {
+  display: flex;
+  align-items: center;
+}
+
+.user-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ui-color-text);
+  transition: opacity var(--ui-transition-duration) var(--ui-transition-function);
+  padding: 6px 12px;
+  border-radius: var(--ui-border-radius);
+}
+
+.user-menu__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.user-menu__avatar img,
+.user-menu__avatar .user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.user-menu__name {
+  font-size: var(--ui-font-size-base);
+  font-weight: 600;
+  color: var(--ui-color-text);
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ── Notification Bell in Header ──────────────────────────── */
+.header-notifications {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.header-notifications__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+  color: inherit;
+  background-color: rgba(48, 120, 117, 0.08);
+  opacity: 1;
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.header-notifications__icon {
+  font-size: 28px;
+  color: #4CAF50; // Зеленый цвет
+  font-variation-settings: 'FILL' 0;
+  transition: all 0.2s ease;
+
+  // Анимация при наличии новых уведомлений
+  .header-notifications__counter:not([style*="display: none"]) + &,
+  .header-notifications__counter[data-count-active] + & {
+    font-variation-settings: 'FILL' 1;
+    animation: bellRing 0.5s ease-in-out;
+  }
+}
+
+.header-notifications__counter {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: #4CAF50; // Зеленый цвет
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  border-radius: 9px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  // Скрываем если 0
+  &[data-count="0"] {
+    display: none !important;
+  }
+}
+
+// Анимация колокольчика
+@keyframes bellRing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  20% {
+    transform: rotate(15deg);
+  }
+  40% {
+    transform: rotate(-15deg);
+  }
+  60% {
+    transform: rotate(8deg);
+  }
+  80% {
+    transform: rotate(-8deg);
+  }
+}
+
+// Адаптивность для мобильных устройств
+@media screen and (max-width: $media-sm) {
+  .header-notifications {
+    margin-right: 8px;
+  }
+
+  .header-notifications__icon {
+    font-size: 24px;
+  }
+
+  .header-notifications__counter {
+    min-width: 16px;
+    height: 16px;
+    font-size: 10px;
+    line-height: 16px;
+    top: 0px;
+    right: 0px;
+  }
+
+  .user-menu__name {
+    display: none; // Скрываем имя на мобильных
+  }
+}

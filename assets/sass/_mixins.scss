@@ -1,0 +1,25 @@
+
+@mixin font-size($size, $line-height: null, $bold: normal) {
+  font-size: $size;
+  @if ($line-height == null) {
+    line-height: $size;
+  } @else {
+    line-height: $line-height;
+  }
+  font-weight: $bold;
+}
+@mixin ease($what: all, $time: 0.2s, $timeout: 0s, $how: ease-in-out) {
+  transition: $what $time $how $timeout;
+}
+
+@mixin link-color($color) {
+  text-decoration: none;
+  color: $color;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+  &.no_decoration {
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,225 @@
+/**
+ * Стили компонента фильтра недвижимости
+ */
+
+.property-filter {
+    &-form {
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 150px;
+
+            label {
+                display: block;
+                margin-bottom: 4px;
+                font-weight: 500;
+                color: #333;
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: 8px 12px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                font-size: 14px;
+
+                &:focus {
+                    outline: none;
+                    border-color: #007bff;
+                }
+            }
+
+            &.location-group {
+                position: relative;
+                max-width: 300px;
+
+                .input-with-icon {
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid #ddd;
+                    border-radius: 4px;
+                    overflow: hidden;
+
+                    .icon {
+                        padding: 8px;
+                        background: #f5f5f5;
+                        color: #666;
+                    }
+
+                    input {
+                        border: none;
+                        border-radius: 0;
+                        flex: 1;
+
+                        &:focus {
+                            border-color: transparent;
+                        }
+                    }
+                }
+            }
+        }
+
+        .filter-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+
+            .filter-submit,
+            .filter-reset {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 4px;
+                font-size: 14px;
+                cursor: pointer;
+                transition: background-color 0.2s;
+
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+            }
+
+            .filter-submit {
+                background-color: #007bff;
+                color: white;
+
+                &:hover:not(:disabled) {
+                    background-color: #0056b3;
+                }
+            }
+
+            .filter-reset {
+                background-color: #f5f5f5;
+                color: #333;
+
+                &:hover {
+                    background-color: #e0e0e0;
+                }
+            }
+        }
+    }
+
+    .location-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        max-height: 200px;
+        overflow-y: auto;
+        margin-top: 4px;
+
+        .location-suggestion {
+            padding: 10px 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            &:hover,
+            &.autocomplete-active {
+                background: #f5f5f5;
+            }
+
+            .icon {
+                color: #666;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .filter-loading,
+    .filter-error {
+        margin-top: 16px;
+        padding: 12px;
+        border-radius: 4px;
+        text-align: center;
+    }
+
+    .filter-loading {
+        background: #f0f0f0;
+    }
+
+    .filter-error {
+        background: #fee;
+        color: #c00;
+    }
+}
+
+// Стили для price inputs
+.price-range-wrapper {
+    .price-inputs-row {
+        display: inline-flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        gap: 8px !important;
+        margin-bottom: 16px;
+        width: 100%;
+
+        > .price-input {
+            display: inline-block !important;
+            width: calc(50% - 4px) !important;
+            max-width: calc(50% - 4px) !important;
+        }
+    }
+}
+
+// Переопределение для element-plus инпутов
+//.price-range-wrapper .price-inputs-row .el-input {
+//    width: 100% !important;
+//}
+
+// Обёртка сайдбара фильтров
+.property-filter-sidebar-wrap {
+    position: relative;
+}
+
+// Кнопка "Показать все / Скрыть" для checkbox групп
+.show-more-btn-wrap {
+    margin-top: 6px;
+
+    .el-button {
+        padding: 0;
+        font-size: 13px;
+        color: #409eff;
+    }
+}
+
+// Фиксированная кнопка сброса фильтров
+.filter-reset-sticky {
+    position: sticky;
+    bottom: 16px;
+    z-index: 100;
+    padding: 12px 0 4px;
+    background: linear-gradient(to bottom, transparent, #fff 40%);
+    pointer-events: none;
+
+    .filter-reset-btn {
+        width: 100%;
+        pointer-events: all;
+        font-weight: 500;
+    }
+}
+
+// Анимация появления/скрытия кнопки сброса
+.filter-reset-fade-enter-active,
+.filter-reset-fade-leave-active {
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.filter-reset-fade-enter-from,
+.filter-reset-fade-leave-to {
+    opacity: 0;
+    transform: translateY(8px);
+}

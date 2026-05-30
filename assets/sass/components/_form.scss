@@ -1,0 +1,756 @@
+// Универсальный инпут для форм
+.from-input__com {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .material-symbols-outlined,
+    .icon {
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #a0a0a0;
+        z-index: 2;
+        font-size: 20px;
+        pointer-events: none;
+    }
+
+    .input__com {
+        width: 100%;
+        height: 40px;
+        padding: 0 12px 0 40px;
+        border: 1px solid #d0d0d0;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        background-color: transparent;
+        transition: all 0.2s ease;
+        box-shadow: none;
+        line-height: 1.5;
+
+        &:hover {
+            border-color: #a0a0a0;
+        }
+
+        &:focus,
+        &.is-focus {
+            border-color: #2c6e6a;
+            outline: none;
+            box-shadow: unset !important;
+        }
+
+        &::placeholder {
+            color: #999999;
+        }
+
+        &[readonly] {
+            cursor: pointer;
+        }
+    }
+}
+
+/**
+ * Универсальные стили формы
+ */
+.el-form.el-form__com {
+    background: #ffffff;
+    border-radius: var(--radius-xl);
+    padding: 24px;
+    box-shadow: var(--shadow-btn);
+
+    // Label стили
+    .el-form-item__label, .templates-label  {
+        font-size: 14px;
+        font-weight: 400;
+        color: #333333;
+        margin-bottom: 8px;
+        display: block;
+        line-height: 1.5;
+    }
+
+    // Input стили
+    .el-form-item .el-input .el-input__wrapper {
+        border: 1px solid #d0d0d0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #333333;
+        background-color: transparent;
+        box-shadow: none;
+        max-width: 100%;
+
+        &:hover {
+            border-color: #a0a0a0;
+        }
+
+        &:focus,
+        &.is-focus {
+            border-color: #2c6e6a;
+            box-shadow: unset !important;
+        }
+
+        &::placeholder {
+            color: #999999;
+            font-size: 14px;
+        }
+
+        // Убираем фон для text input
+        input[type="text"] {
+            background-color: transparent !important;
+        }
+    }
+
+    // Textarea стили
+    .el-textarea__inner {
+        border: 1px solid #d0d0d0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #333333;
+        background-color: #ffffff;
+        min-height: 150px;
+        resize: vertical;
+        line-height: 1.6;
+        box-shadow: none;
+        transition: all 0.2s ease;
+        &:hover {
+            border-color: #a0a0a0;
+        }
+        &:focus,
+        &.is-focus {
+            border-color: $color-site;
+            box-shadow: unset !important;
+        }
+
+        &::placeholder {
+            color: #999999;
+            font-size: 14px;
+        }
+    }
+
+    // Блок предлагаемых фраз
+    .message-templates,
+    .template-phrases {
+        margin: 20px 0;
+        .template-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666666;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .template-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+
+            .template-btn {
+                padding: 8px 16px;
+                background: #f5f5f5;
+                border: 1px solid #e0e0e0;
+                border-radius: 20px;
+                font-size: 13px;
+                color: #555555;
+                cursor: pointer;
+                transition: all 0.2s ease;
+                white-space: nowrap;
+
+                &:hover {
+                    background: #eeeeee;
+                    border-color: #cccccc;
+                    color: #333333;
+                }
+
+                &:active {
+                    background: #e0e0e0;
+                    transform: scale(0.98);
+                }
+            }
+        }
+    }
+
+    // Кнопка отправки
+    .el-form-item:last-child,
+    .submit-button-wrapper {
+        margin-top: 24px;
+        margin-bottom: 0;
+
+        .el-button,
+        .submit-btn {
+            width: 100%;
+            height: 48px;
+            background-color: #2c6e6a;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 0 24px;
+
+            .material-symbols-outlined,
+            .icon {
+                font-size: 20px;
+            }
+
+            &:hover {
+                background-color: #245c58;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(44, 110, 106, 0.3);
+            }
+
+            &:active {
+                transform: translateY(0);
+                box-shadow: none;
+            }
+
+            &:disabled {
+                background-color: #a0a0a0;
+                cursor: not-allowed;
+                transform: none;
+                box-shadow: none;
+            }
+        }
+    }
+
+    .el-form-item.is-error .el-form-item__content .el-input__wrapper,
+    .el-form-item.is-error .el-form-item__content .el-input__wrapper:hover,
+    .el-form-item.is-error .el-form-item__content .el-input__wrapper:focus,
+    .el-form-item.is-error .el-form-item__content .el-input__wrapper.is-focus,
+    .el-form-item.is-error .el-form-item__content .el-textarea__inner,
+    .el-form-item.is-error .el-form-item__content .el-textarea__inner:hover,
+    .el-form-item.is-error .el-form-item__content .el-textarea__inner:focus,
+    .el-form-item.is-error .el-form-item__content .el-textarea__inner.is-focus,
+    .el-form-item.is-error .el-form-item__content .el-select__wrapper,
+    .el-form-item.is-error .el-form-item__content .el-select__wrapper:hover,
+    .el-form-item.is-error .el-form-item__content .el-select__wrapper:focus,
+    .el-form-item.is-error .el-form-item__content .el-select__wrapper.is-focus,
+    .el-form-item.is-error .el-form-item__content .el-input-tag__wrapper,
+    .el-form-item.is-error .el-form-item__content .el-input-tag__wrapper:hover,
+    .el-form-item.is-error .el-form-item__content .el-input-tag__wrapper:focus,
+    .el-form-item.is-error .el-form-item__content .el-input-tag__wrapper.is-focus {
+        border-color: var(--el-color-danger);
+        box-shadow: unset;
+    }
+}
+
+/**
+ * Стили для истории сообщений
+ */
+.messages-history {
+     margin-bottom: 30px;
+    .messages-history-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333333;
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+    .messages-list {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 16px;
+        max-height: 500px;
+        overflow-y: auto;
+        padding-right: 8px;
+        
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        &::-webkit-scrollbar-track {
+            background: #f5f5f5;
+            border-radius: 3px;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+            background: #c0c0c0;
+            border-radius: 3px;
+            
+            &:hover {
+                background: #a0a0a0;
+            }
+        }
+    }
+    .message-item {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 16px;
+        transition: all 0.2s ease;
+        
+        &:hover {
+            border-color: #2c6e6a;
+            box-shadow: 0 2px 8px rgba(44, 110, 106, 0.1);
+        }
+        
+        &.message-read {
+            background: #fff;
+            border-color: #d0d0d0;
+        }
+        
+        // Сообщение от хоста (владельца)
+        &.message-from-host {
+            background: #f0f7f6;
+            border-color: #2c6e6a;
+            border-left: 3px solid #2c6e6a;
+        }
+        
+        // Сообщение от гостя
+        &.message-from-guest {
+            background: #ffffff;
+            border-color: #e0e0e0;
+            border-left: 3px solid #999999;
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+            
+            .message-title {
+                font-size: 15px;
+                font-weight: 600;
+                color: #333333;
+                flex: 1;
+            }
+            
+            .message-date {
+                font-size: 13px;
+                color: #999999;
+                white-space: nowrap;
+                margin-left: 12px;
+            }
+        }
+        
+        .message-content {
+            font-size: 14px;
+            color: #555555;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            padding: 12px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        
+        .message-status {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            
+            .status-badge,
+            .notification-badge {
+                display: inline-block;
+                padding: 4px 10px;
+                border-radius: 12px;
+                font-size: 12px;
+                font-weight: 500;
+            }
+            
+            .status-badge {
+                &.status-sent {
+                    background: #E3F2FD;
+                    color: #1976D2;
+                }
+                
+                &.status-delivered {
+                    background: #E8F5E9;
+                    color: #388E3C;
+                }
+                
+                &.status-read {
+                    background: #FFF3E0;
+                    color: #F57C00;
+                }
+                &.status-in_progress {
+                    background: #a4a5a6;
+                    color: #fff;
+                }
+
+            }
+            
+            .notification-badge {
+                &.notification-sent {
+                    background: #E8F5E9;
+                    color: #388E3C;
+                }
+                
+                &.notification-failed {
+                    background: #FFEBEE;
+                    color: #D32F2F;
+                }
+                
+                &.notification-pending {
+                    background: #FFF3E0;
+                    color: #F57C00;
+                }
+            }
+        }
+    }
+}
+
+// Property Filter Styles
+.main-search-form-container {
+    background-color: #fff;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 8px 14px;
+    border-radius: 100px;
+    height: 70px;
+    .property-filter-form {
+        display: flex;
+        width: 100%;
+        .filter-row {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            align-items: center;
+            .input-group__com {
+                .input-with-icon {
+                    .input__com {
+                        background: none;
+                        border: none;
+                        height: 50px;
+                    }
+                    .guests-placeholder {
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+
+        .button__com.lg {
+            padding: 15px 20px;
+            min-height: 48px;
+        }
+        // new
+        .el-autocomplete {
+            max-width: 300px;
+            .el-input {
+                border: none;
+            }
+            .el-input__wrapper {
+                box-shadow: unset;
+            }
+            .el-input__inner {
+                border: none;
+                height: 50px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+            .el-input__prefix-inner>:last-child {
+                margin-right: 4px;
+            }
+        }
+        .el-date-editor--daterange {
+            height: 50px;
+            max-width: 230px;
+            box-shadow: unset !important;
+            .el-input__wrapper {
+                box-shadow: unset;
+            }
+            .el-range-input {
+                border: none;
+                height: 50px;
+                font-size: 16px;
+                font-weight: 500;
+            }
+        }
+        .el-input .el-input__icon,.el-date-editor .el-range__close-icon {
+            font-size: 24px;
+        }
+        .line {
+            height: 40px;
+            width: 1px;
+            background: var(--el-text-color-placeholder);
+            opacity: .4;
+        }
+        .filter-actions {
+            display: block;
+            margin: 0px;
+        }
+    }
+
+    @media screen and (max-width: $media-md) {
+
+    }
+}
+// шапка
+header.site-header {
+    .main-search-form-container {
+        border: 1px solid $color-grey;
+        height: 50px;
+        padding: 4px 12px;
+        max-width: 50%;
+        --el-input-com-height: 28px;
+
+        .material-symbols-outlined {
+            font-size: 20px !important;
+        }
+        .property-filter-form {
+            height: 40px;
+            align-items: center;
+            .filter-row {
+                margin: 0px;
+                .input-group__com {
+                    .input-with-icon {
+                        .input__com {
+                            height: var(--el-input-com-height);
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            .el-input.is-disabled .el-input__wrapper {
+                background-color: transparent;
+            }
+            // new
+            .el-autocomplete {
+                max-width: 200px;
+                .el-input__wrapper {
+                    padding-left: 0;
+                }
+                .el-input__inner {
+                    height: var(--el-input-com-height);
+                    font-size: 14px;
+                }
+            }
+            .el-date-editor--daterange {
+                height: var(--el-input-com-height);
+                max-width: 190px;
+                .el-input__wrapper {
+                    box-shadow: unset;
+                }
+                .el-range-input {
+                    height: var(--el-input-com-height);
+                    font-size: 14px;
+                }
+            }
+            .el-input .el-input__icon,.el-date-editor .el-range__close-icon {
+                font-size: 16px;
+            }
+            .button__com {
+                .material-symbols-outlined {
+                    font-size: 18px;
+                }
+                padding: 8px;
+                border-radius: 100px;
+                min-height: var(--el-input-com-height);
+                min-width: var(--el-input-com-height);
+                .text-b {
+                    display: none;
+                }
+            }
+            .line {
+                height: 20px;
+            }
+            .el-input__wrapper {
+                padding-left: 6px;
+                padding-right: 6px;
+            }
+        }
+    }
+}
+
+//
+.el-autocomplete__popper, .el-picker__popper,.el-popover {
+    border-radius: 16px !important;
+    overflow: hidden;
+    .el-popper__arrow {
+        display: none;
+    }
+}
+
+// Исправление артефактов для Date Picker в сайдбаре
+.booking-date-picker {
+    border-radius: 8px !important;
+    box-shadow: 0 0 0 1px #d0d0d0 inset !important;
+    &.el-range-editor.el-input__wrapper {
+        padding: 0 12px 0 15px;
+    }
+
+    .el-range-input {
+        font-size: 14px !important;
+        color: #333333 !important;
+    }
+    &.is-active {
+        box-shadow: 0 0 0 1px #2c6e6a inset !important;
+    }
+    &:hover {
+        box-shadow: 0 0 0 1px #a0a0a0 inset !important;
+    }
+}
+
+.input-group__com.guests-group {
+    .guests-placeholder {
+        cursor: pointer;
+    }
+    .guest-controls-wrapper {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        border: 1px solid $color-medium-grey-2;
+        border-radius: 12px;
+        padding: 15px;
+        margin-top: 12px;
+        z-index: 100;
+        width: 300px;
+        box-shadow: 0 9px 8px rgba(0,0,0,0.5);
+        &.open {
+            display: block;
+        }
+    }
+}
+
+// Счетчик
+.guest-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    .guest-control {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $color-medium-grey-2;
+        padding-bottom: 10px;
+        margin-bottom: 10px;
+        &:last-child {
+            border-bottom: none;
+            padding-bottom: 0px;
+            margin-bottom: 0px;
+        }
+        .flex-label {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            .guest-label {
+                font-size: 16px;
+                font-weight: 400;
+                color: $color-black-lite;
+            }
+            .guest-desc {
+                font-size: 12px;
+                font-weight: 400;
+                color: $color-dark-grey;
+                line-height: 20px;
+            }
+        }
+
+        .guest-input {
+
+        }
+    }
+}
+
+// old
+.input-group__com {
+    flex: 1;
+    width: 100%;
+    min-width: 150px;
+    position: relative;
+    label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    input,
+    select {
+        width: 100%;
+        padding: 12px 12px 12px 35px; // Increased left padding to accommodate icon
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+    .input-with-icon {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        .icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: $color-dark-grey;
+            z-index: 2;
+            font-size: 24px;
+        }
+        .input__com {
+            padding-left: 45px;
+        }
+    }
+
+    .input__com {
+        display: inline-block;
+        height: 40px;
+        padding: 6px 10px;
+        border: 1px solid #e5e8f0;
+        background-color: $color-input-bg;
+        border-radius: 12px;
+        font-size: 16px;
+    }
+    //автокомплемит
+    .location-suggestions {
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        max-width: 300px;
+        border-radius: 12px;
+        margin-top: 12px;
+        max-height: 300px;
+        overflow: auto;
+        border: 1px solid $color-medium-grey-2;
+        box-shadow: 0 9px 8px rgba(0,0,0,0.5);
+        z-index: 100;
+        text-align: left;
+        .location-suggestion,.no-results {
+            padding: 15px;
+            color: $color-black-medium;
+        }
+        .location-suggestion {
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 0 0.5px #f3f3f3;
+            @include ease();
+            .icon {
+                opacity: .6;
+            }
+            &:has(.icon) {
+                padding: 15px 10px;
+            }
+            &:hover {
+                color: $color-site;
+                background: $color-medium-grey-3;
+            }
+            &.active {
+                color: $color-site;
+                background: $color_green-light;
+            }
+        }
+        .no-results {
+            text-align: center;
+            color: $color-light-grey !important;
+            box-shadow: none;
+            cursor: auto;
+        }
+    }
+}
+
+// new el
+.el-input-group__com {}
+

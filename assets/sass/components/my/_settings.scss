@@ -1,0 +1,93 @@
+/**
+ * Стили страницы настроек профиля
+ */
+.settings-container {
+    .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 24px;
+        align-items: start;
+    }
+
+    .settings-card {
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        .settings-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            .settings-header-icon {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: var(--el-color-primary-light-9);
+                color: var(--el-color-primary);
+                border-radius: 8px;
+                
+                .material-symbols-outlined {
+                    font-size: 24px;
+                }
+            }
+
+            .settings-header-title {
+                margin: 0;
+                font-size: 1.25rem;
+                font-weight: 600;
+                color: #333;
+            }
+        }
+
+        .settings-form {
+            padding: 10px 0;
+
+            .settings-form-row {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+
+                @media (max-width: 768px) {
+                    grid-template-columns: 1fr;
+                }
+            }
+
+            .settings-form-item {
+                margin-bottom: 20px;
+
+                .el-input__wrapper {
+                    box-shadow: none;
+                    border: 1px solid #dcdfe6;
+                    border-radius: 8px;
+                    
+                    .el-input__prefix {
+                        padding-left: 8px;
+                        color: #909399;
+                    }
+                }
+            }
+
+            .settings-form-actions {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 24px;
+                padding-top: 16px;
+                border-top: 1px solid #f0f2f5;
+
+                .settings-submit-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    font-weight: 500;
+                    min-width: 160px;
+                }
+            }
+        }
+    }
+
+    .settings-password-card {
+        // Специфичные стили для карточки пароля, если нужны
+    }
+}

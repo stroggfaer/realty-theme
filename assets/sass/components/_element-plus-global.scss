@@ -1,0 +1,578 @@
+// ============================================================================
+// Element Plus — Глобальные стили для всего проекта
+// ============================================================================
+:root {
+  --el-color-primary: #{$color_green};
+  --ui-color-primary: #{$color_green};
+  --ui-color-primary-dark: #{$color_green_dark};
+  --ui-color-danger: #{$color_red};
+  --ui-color-danger-hover: #{$color-red-btn};
+  --ui-color-surface: #{$color-white};
+  --ui-color-border: #{$input-border};
+  --ui-color-border-hover: #{$color_green};
+  --ui-color-text: #{$color-black};
+  --ui-color-text-muted: #{$color-black-lite};
+  --ui-color-placeholder: #{$color-dark-grey};
+  --ui-color-disabled: #{$color-medium-grey-3};
+  --ui-border-radius: 8px;
+  --ui-border-radius-pill: 50px;
+  --ui-font-size-base: 14px;
+  --ui-font-size-small: 13px;
+  --ui-font-size-extra-small: 12px;
+  --ui-component-size-large: 40px;
+  --ui-component-size: 32px;
+  --ui-component-size-small: 24px;
+  --ui-transition-duration: .3s;
+  --ui-transition-fast-duration: .2s;
+  --ui-transition-function: cubic-bezier(.645, .045, .355, 1);
+  --ui-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+  --el-checkbox-checked-bg-color: var(--ui-color-primary);
+  --el-checkbox-checked-input-border-color: var(--ui-color-primary);
+  --el-checkbox-input-border-color-hover: var(--ui-color-primary);
+  --el-checkbox-text-color: var(--ui-color-text);
+  --el-checkbox-font-size: var(--ui-font-size-base);
+
+  --el-radio-checked-bg-color: var(--ui-color-primary);
+  --el-radio-checked-input-border-color: var(--ui-color-primary);
+  --el-radio-input-border-color-hover: var(--ui-color-primary);
+  --el-radio-text-color: var(--ui-color-text);
+  --el-radio-font-size: var(--ui-font-size-base);
+
+  --el-input-border-color: var(--ui-color-border);
+  --el-input-hover-border-color: var(--ui-color-border-hover);
+  --el-input-focus-border-color: var(--ui-color-border-hover);
+  --el-input-bg-color: var(--ui-color-surface);
+  --el-input-text-color: var(--ui-color-text);
+  --el-input-placeholder-color: var(--ui-color-placeholder);
+  --el-input-border-radius: var(--ui-border-radius);
+
+  --el-select-border-color-hover: var(--ui-color-border-hover);
+  --el-select-input-focus-border-color: var(--ui-color-border-hover);
+
+  --el-button-border-radius: var(--ui-border-radius);
+  --el-button-font-size: var(--ui-font-size-base);
+  --el-button-bg-color: var(--ui-color-primary);
+  --el-button-border-color: var(--ui-color-primary);
+  --el-button-hover-bg-color: var(--ui-color-primary-dark);
+  --el-button-hover-border-color: var(--ui-color-primary-dark);
+  --el-button-active-bg-color: var(--ui-color-primary-dark);
+  --el-button-active-border-color: var(--ui-color-primary-dark);
+
+  --el-slider-main-bg-color: var(--ui-color-primary);
+  --el-slider-runway-bg-color: var(--ui-color-disabled);
+  --el-slider-button-size: 20px;
+  --el-slider-height: 6px;
+  --el-slider-button-wrapper-size: 36px;
+  --el-slider-button-wrapper-offset: -15px;
+  --el-slider-border-radius: 3px;
+
+  --el-switch-on-color: var(--ui-color-primary);
+  --el-switch-off-color: var(--ui-color-disabled);
+
+  --el-tag-border-radius: var(--ui-border-radius-pill);
+  --el-tag-bg-color: var(--ui-color-primary);
+  --el-tag-border-color: var(--ui-color-primary);
+  --el-tag-text-color: var(--ui-color-surface);
+
+  --el-collapse-border-color: transparent;
+  --el-collapse-header-bg-color: transparent;
+  --el-collapse-content-bg-color: transparent;
+}
+// ──────────────── CHECKBOX ────────────────
+.el-checkbox {
+  --el-checkbox-checked-bg-color: var(--ui-color-primary);
+  --el-checkbox-checked-input-border-color: var(--ui-color-primary);
+  --el-checkbox-input-border-color-hover: var(--ui-color-primary);
+  --el-checkbox-text-color: var(--ui-color-text);
+  --el-checkbox-font-size: var(--ui-font-size-base);
+  --el-checkbox-font-weight: 400;
+  
+  height: auto;
+  margin-right: 0;
+  display: flex;
+  align-items: flex-start;
+  
+  .el-checkbox__input {
+    flex-shrink: 0;
+    margin-top: 2px;
+    
+    .el-checkbox__inner {
+      border-radius: 4px;
+      width: 18px;
+      height: 18px;
+      
+      &::after {
+        border-width: 2px;
+        height: 9px;
+        left: 5px;
+        top: 2px;
+        width: 5px;
+      }
+    }
+  }
+  
+  .el-checkbox__label {
+    padding-left: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: $color-black-label;
+    font-weight: 400;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    min-width: 0;
+    @include ease();
+    &:hover {
+      color: $color-site;
+    }
+  }
+  
+  &.is-checked {
+    .el-checkbox__label {
+      color: $color-site;
+    }
+  }
+}
+
+// ──────────────── RADIO ────────────────
+.el-radio {
+  --el-radio-checked-bg-color: var(--ui-color-primary);
+  --el-radio-checked-input-border-color: var(--ui-color-primary);
+  --el-radio-input-border-color-hover: var(--ui-color-primary);
+  --el-radio-text-color: var(--ui-color-text);
+  --el-radio-font-size: var(--ui-font-size-base);
+  
+  height: auto;
+  margin-right: 0;
+  display: flex;
+  align-items: flex-start;
+  
+  .el-radio__input {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  
+  .el-radio__label {
+    padding-left: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    color: $color-black-lite;
+    font-weight: 400;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    white-space: normal;
+    flex: 1;
+    min-width: 0;
+  }
+  
+  &.is-checked {
+    .el-radio__label {
+      color: $color-black;
+      font-weight: 500;
+    }
+  }
+}
+
+// ──────────────── INPUT ────────────────
+.el-input {
+  --el-input-border-color: var(--ui-color-border);
+  --el-input-hover-border-color: var(--ui-color-border-hover);
+  --el-input-focus-border-color: var(--ui-color-border-hover);
+  --el-input-bg-color: var(--ui-color-surface);
+  --el-input-text-color: var(--ui-color-text);
+  --el-input-placeholder-color: var(--ui-color-placeholder);
+  --el-input-border-radius: var(--ui-border-radius);
+
+  .el-input__wrapper {
+    border-radius: var(--ui-border-radius);
+  }
+
+  .el-input__inner {
+    font-size: 14px;
+  }
+}
+
+// ──────────────── SELECT ────────────────
+.el-select {
+  --el-select-border-color-hover: var(--ui-color-border-hover);
+  --el-select-input-focus-border-color: var(--ui-color-border-hover);
+  
+  .el-select__wrapper {
+    border-radius: var(--ui-border-radius);
+  }
+}
+
+// ──────────────── BUTTON ────────────────
+.el-button {
+  --el-button-border-radius: var(--ui-border-radius);
+  --el-button-font-size: var(--ui-font-size-base);
+  
+  &--primary {
+    --el-button-bg-color: var(--ui-color-primary);
+    --el-button-border-color: var(--ui-color-primary);
+    --el-button-hover-bg-color: var(--ui-color-primary-dark);
+    --el-button-hover-border-color: var(--ui-color-primary-dark);
+    --el-button-active-bg-color: var(--ui-color-primary-dark);
+    --el-button-active-border-color: var(--ui-color-primary-dark);
+  }
+  
+  &--danger {
+    --el-button-bg-color: var(--ui-color-danger);
+    --el-button-border-color: var(--ui-color-danger);
+    --el-button-hover-bg-color: var(--ui-color-danger-hover);
+    --el-button-hover-border-color: var(--ui-color-danger-hover);
+  }
+  > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  &.el-button--large {
+    --el-button-size: 48px;
+    height: var(--el-button-size);
+    padding: 0 28px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    .material-symbols-outlined {
+      font-size: 20px;
+    }
+  }
+}
+
+// ──────────────── SLIDER ────────────────
+.el-slider {
+  --el-slider-main-bg-color: var(--ui-color-primary);
+  --el-slider-runway-bg-color: var(--ui-color-disabled);
+  --el-slider-button-size: 20px;
+  --el-slider-height: 6px;
+  --el-slider-button-wrapper-size: 36px;
+  --el-slider-button-wrapper-offset: -15px;
+  --el-slider-border-radius: 3px;
+  
+  .el-slider__runway {
+    border-radius: 3px;
+  }
+  
+  .el-slider__bar {
+    border-radius: 3px;
+  }
+  
+  .el-slider__button {
+    border: 3px solid var(--ui-color-primary);
+    background: var(--ui-color-surface);
+    box-shadow: var(--ui-box-shadow);
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
+
+// ──────────────── SWITCH ────────────────
+.el-switch {
+  --el-switch-on-color: var(--ui-color-primary);
+  --el-switch-off-color: var(--ui-color-disabled);
+}
+
+// ──────────────── TAG (CHIPS) ────────────────
+.el-tag {
+  --el-tag-border-radius: var(--ui-border-radius-pill);
+  
+  &.el-tag--primary {
+    --el-tag-bg-color: var(--ui-color-primary);
+    --el-tag-border-color: var(--ui-color-primary);
+    --el-tag-text-color: var(--ui-color-surface);
+  }
+  
+  &.el-tag--info {
+    --el-tag-bg-color: var(--ui-color-disabled);
+    --el-tag-border-color: var(--ui-color-disabled);
+    --el-tag-text-color: var(--ui-color-text-muted);
+  }
+}
+
+// ──────────────── COLLAPSE ────────────────
+.el-collapse {
+  --el-collapse-border-color: transparent;
+  --el-collapse-header-bg-color: transparent;
+  --el-collapse-content-bg-color: transparent;
+  border: none;
+  margin-top: 16px;
+  
+  .el-collapse-item {
+    margin-bottom: 16px;
+
+    .el-collapse-item__header {
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-dark-grey-2;
+      background-color: transparent;
+      border: none;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 12px 0;
+      
+      &:hover {
+        color: $color_green;
+      }
+    }
+    
+    .el-collapse-item__wrap {
+      border: none;
+      background-color: transparent;
+    }
+
+    .el-collapse-item__content {
+      padding: 16px 0 0;
+    }
+  }
+}
+
+// ──────────────── DROPDOWN / SELECT OPTIONS ────────────────
+.el-select-dropdown {
+  .el-select-dropdown__item {
+    font-size: 14px;
+    
+    &.is-selected {
+      color: $color_green;
+      font-weight: 500;
+    }
+    
+    &:hover {
+      background-color: $color_green_ling;
+    }
+  }
+}
+
+// ──────────────── PRICE RANGE SLIDER ────────────────
+.price-range-wrapper {
+  .price-inputs-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 15px;
+  }
+
+  // Кастомизация el-input для цены
+  .price-input {
+    --el-input-border-color: var(--ui-color-border);
+    --el-input-hover-border-color: var(--ui-color-border-hover);
+    --el-input-focus-border-color: var(--ui-color-border-hover);
+    --el-input-bg-color: var(--ui-color-surface);
+    --el-input-text-color: var(--ui-color-text);
+    --el-input-placeholder-color: var(--ui-color-placeholder);
+
+    .el-input__wrapper {
+      border-radius: var(--ui-border-radius);
+      padding: 8px 12px;
+    }
+
+    .el-input__inner {
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+
+}
+
+// ──────────────── CHECKBOX GROUPS ────────────────
+.el-checkbox-group {
+  //display: grid;
+  //grid-template-columns: repeat(1, 1fr);
+  //gap: 8px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// ──────────────── RADIO GROUPS ────────────────
+.el-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+// ──────────────── CHIPS CONTAINER ────────────────
+.chips-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .el-tag {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: var(--ui-border-radius-pill);
+    padding: 8px 16px;
+    font-size: var(--ui-font-size-base);
+
+    &.el-tag--primary {
+      background-color: var(--ui-color-primary);
+      border-color: var(--ui-color-primary);
+      color: var(--ui-color-surface);
+    }
+
+    &.el-tag--info {
+      background-color: var(--ui-color-disabled);
+      border-color: var(--ui-color-disabled);
+      color: var(--ui-color-text-muted);
+
+      &:hover {
+        border-color: var(--ui-color-primary);
+        color: var(--ui-color-primary);
+      }
+    }
+  }
+}
+
+// ──────────────── SHOW MORE BUTTON ────────────────
+.show-more-btn-wrap {
+  margin-top: 12px;
+
+  .el-button {
+    padding: 0;
+    height: auto;
+    color: $color_green;
+    font-size: 14px;
+    font-weight: 600;
+
+    &:hover {
+      color: $color_green_dark;
+    }
+  }
+}
+.el-checkbox .el-checkbox__input .el-checkbox__inner::after {
+  left: 8px;
+  top: 7px;
+}
+
+// ──────────────── EL-FORM CUSTOMIZATION ────────────────:
+.el-form {
+  .el-form-item {
+    margin-bottom: 24px; // Увеличил отступ между полями для чистоты
+
+    // Контейнер для кастомного лейбла (Текст + Ссылка)
+    &__label-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 8px;
+
+      span {
+        font-size: 14px;
+        font-weight: 600;
+        color: $color-black; // Основной цвет текста из макета
+      }
+
+      .label-link {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--ui-color-primary);
+        text-decoration: none;
+        transition: color var(--ui-transition-fast-duration);
+
+        &:hover {
+          color: var(--ui-color-primary-dark);
+        }
+      }
+    }
+    .el-form-item__label {
+      color: rgb(63 73 72 / 1);
+      display: flex;
+      font-weight: 600;
+      width: 100%;
+      a {
+        color: $color_green;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        margin-bottom: -15px;
+        &:hover {
+          text-decoration: underline;
+        }
+        display: inline-block;
+        margin-left: 8px;
+      }
+    }
+    // Стилизация Input строго внутри Form Item
+    .el-input {
+      --el-input-bg-color: #f5f7f9;
+      --el-input-border-color: #{$color-readonly-grey};
+      // Убираем системные стрелочки у input type="number"
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+      .el-input__wrapper {
+        background-color: var(--el-input-bg-color);
+        border: 1px solid var(--el-input-border-color);
+        border-radius: 12px;
+        /* Важно: обнуляем box-shadow, который дает жирность */
+        box-shadow: none !important;
+        transition: background-color var(--ui-transition-duration), border-color var(--ui-transition-duration);
+
+        &:hover {
+          --el-input-border-color: var(--ui-color-border-hover);
+        }
+
+        &.is-focus {
+          background-color: var(--ui-color-surface) !important;
+          --el-input-border-color: var(--ui-color-border-hover);
+          /* Вместо тени используем чистый border 1px */
+          box-shadow: none !important;
+        }
+
+        // Иконки (mail, lock)
+        .material-symbols-outlined {
+          font-size: 20px;
+          color: #7d8590; // Цвет иконки со скрина
+          display: flex;
+          align-items: center;
+        }
+
+        // Если инпут заблокирован
+        &.is-disabled {
+          .el-input__wrapper {
+            background-color: var(--ui-color-disabled);
+            opacity: 0.5;
+            cursor: not-allowed;
+          }
+        }
+      }
+
+      // Размеры
+      &.el-input--large {
+        .el-input__inner { height: 48px; }
+      }
+
+      &:not(.el-input--large) {
+        .el-input__wrapper { border-radius: 8px; padding: 0 12px; }
+        .el-input__inner { height: 36px; }
+      }
+
+      .el-input__inner {
+        font-size: 14px;
+        color: var(--ui-color-text);
+        background: transparent !important; // Чтобы не перекрывал wrapper
+      }
+    }
+
+    // Обработка ошибок (Validation Error)
+    &.is-error {
+      .el-input__wrapper {
+        --el-input-border-color: var(--ui-color-danger) !important;
+      }
+    }
+  }
+}
+.el-form-item__content {
+  .show-more-btn-wrap .el-button {
+    color: var(--el-color-primary);
+  }
+}

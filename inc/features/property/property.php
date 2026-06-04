@@ -254,7 +254,7 @@ class PropertyFeature {
                     'images' => array_map(function($img) {
                         return $img['src'] ?? '';
                     }, $images),
-                    'rating' => 4.1, // временно статика
+                    'rating' => realty_get_property_review_average_rating( $post->ID ),
                     'is_favorite' => $is_favorite, // временно статика
                     'permalink' => get_permalink($post->ID),
                 ];

@@ -469,6 +469,8 @@ function realty_theme_save_booking_settings() {
     if ( isset( $_POST['booking_notice_confirmed'] ) ) {
         update_option( 'booking_notice_confirmed', sanitize_textarea_field( wp_unslash( $_POST['booking_notice_confirmed'] ) ) );
     }
+    $reviews_enabled = isset( $_POST['reviews_enabled'] ) ? 1 : 0;
+    update_option( 'reviews_enabled', $reviews_enabled );
 }
 
 /**

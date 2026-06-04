@@ -220,8 +220,8 @@ $property_location = '';
 $property_address = '';
 $property_lat = '';
 $property_lng = '';
-$property_rating = '4.9';
-$property_reviews = '128';
+$property_rating = realty_get_property_review_average_rating( $property_id );
+$property_reviews = realty_get_property_reviews_count( $property_id );
 
 if ( $property_id > 0 ) {
     $property = get_post( $property_id );

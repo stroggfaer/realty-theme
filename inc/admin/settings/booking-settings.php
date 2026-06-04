@@ -54,6 +54,20 @@ function realty_render_booking_settings() {
                 </p>
             </td>
         </tr>
+        <tr>
+            <th scope="row">
+                <label for="reviews_enabled">
+                    <?php esc_html_e( 'Включить отзывы и рейтинги', 'realty-theme' ); ?>
+                </label>
+            </th>
+            <td>
+                <label class="screen-reader-text" for="reviews_enabled"><?php esc_html_e( 'Включить отзывы и рейтинги', 'realty-theme' ); ?></label>
+                <input type="checkbox" name="reviews_enabled" id="reviews_enabled" value="1" <?php checked( 1, get_option( 'reviews_enabled', 1 ) ); ?> />
+                <p class="description">
+                    <?php esc_html_e( 'Если включено, гости смогут оставлять отзывы после завершения бронирования.', 'realty-theme' ); ?>
+                </p>
+            </td>
+        </tr>
     </table>
     <?php
 }

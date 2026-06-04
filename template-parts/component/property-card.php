@@ -29,6 +29,8 @@ $property_types = $pod->field('property_type');
 $max_adults = get_post_meta($property_id, '_max_adults', true);
 $max_children = get_post_meta($property_id, '_max_children', true);
 
+$property_rating = realty_get_property_review_average_rating( $property_id );
+
 // Получаем изображение
 $thumbnail_url = get_the_post_thumbnail_url($property_id, 'property-teaser');
 $gallery_data = pod_get_gallery_data($pod, 'property-teaser', true);
@@ -69,7 +71,11 @@ $show_map_location = $args['show_map_location'] ?? false;
             <h3 class="entry-title">
                 <a href="<?php echo esc_url(get_permalink($property_id)); ?>"><?php echo esc_html($property_title); ?></a>
             </h3>
-            <div class="rating"><span class="material-symbols-outlined">star</span> 4.1</div>
+            <?php if ( realty_is_reviews_enabled() ) : 
+                $reviews_count = realty_get_property_reviews_count( $property_id );
+            ?>
+            <div class="rating"><span class="material-symbols-outlined">star</span> <?php echo esc_html( number_format_i18n( $property_rating, 1 ) ); ?> <span class="reviews-count">(<?php echo esc_html( $reviews_count ); ?>)</span></div>
+            <?php endif; ?>
         </div>
         <div class="property-meta">
             <?php if ($property_address || $property_locations) : ?>

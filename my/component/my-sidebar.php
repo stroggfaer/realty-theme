@@ -37,6 +37,10 @@ if ( empty( $current_page ) ) {
                 <span class="material-symbols-outlined">settings</span>
                 <span class="my-sidebar-label">Настройки</span>
             </a>
+            <a href="<?php echo esc_url( home_url( '/my/booking-archive/' ) ); ?>" class="my-sidebar-item<?php echo $current_page === 'booking-archive' ? ' my-sidebar-item--active' : ''; ?>">
+                <span class="material-symbols-outlined">archive</span>
+                <span class="my-sidebar-label">Архив бронирований</span>
+            </a>
         </nav>
         <div class="my-sidebar-footer">
             <a href="<?php echo esc_url( home_url( '/help/' ) ); ?>" class="my-sidebar-item">

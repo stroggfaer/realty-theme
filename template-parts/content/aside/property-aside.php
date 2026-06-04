@@ -50,11 +50,17 @@ if ($pod && $value = get_post_meta($pod->id(), 'hours_limit', true)) {
                 <span class="period">/ <?php echo esc_html( $period_label ); ?></span>
             <?php endif; ?>
         </div>
+        <?php if ( realty_is_reviews_enabled() ) : 
+            $property_id = $pod ? $pod->id() : 0;
+            $avg_rating = realty_get_property_review_average_rating( $property_id );
+            $reviews_count = realty_get_property_reviews_count( $property_id );
+        ?>
         <div class="rating">
             <span class="material-symbols-outlined star-icon">star</span>
-            <span class="rating-value">4.98</span>
-            <span class="reviews-count">(124)</span>
+            <span class="rating-value"><?php echo esc_html( number_format_i18n( $avg_rating, 1 ) ); ?></span>
+            <span class="reviews-count">(<?php echo esc_html( $reviews_count ); ?>)</span>
         </div>
+        <?php endif; ?>
     </div>
     <!--Дата заезда и контакт (Vue 3)-->
     <?php

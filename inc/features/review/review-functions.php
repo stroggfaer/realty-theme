@@ -503,8 +503,8 @@ class ReviewService {
 
         $ratings = $data['ratings'] ?? array();
         $ratings = array_map( 'intval', $ratings );
-        $required = array( 'price_quality', 'cleanliness', 'location', 'comfort', 'food', 'service' );
-        foreach ( $required as $key ) {
+        $criteria = realty_get_review_criteria();
+        foreach ( $criteria as $key => $label ) {
             if ( empty( $ratings[ $key ] ) || $ratings[ $key ] < 1 || $ratings[ $key ] > 10 ) {
                 return new WP_Error( 'invalid_rating', 'Необходима оценка по всем параметрам от 1 до 10' );
             }
@@ -646,6 +646,10 @@ class ReviewService {
                     'key'   => '_property_id',
                     'value' => $property_id,
                 ),
+                array(
+                    'key'   => '_review_status',
+                    'value' => 'published',
+                ),
             ),
             'fields'         => 'ids',
         ) );
@@ -670,6 +674,10 @@ class ReviewService {
                 array(
                     'key'   => '_host_id',
                     'value' => $host_id,
+                ),
+                array(
+                    'key'   => '_review_status',
+                    'value' => 'published',
                 ),
             ),
             'fields'         => 'ids',

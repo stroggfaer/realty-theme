@@ -1,7 +1,7 @@
 <?php
 /**
  * Компонент формы отзыва (inline Vue, по паттерну single-property.php)
- * Модуль "Мой кабинет" для темы Realty Theme
+ * Поля динамически подгружаются из справочника характеристик (группа "Оценки")
  *
  * @package RealtyTheme
  * @subpackage MyCabinet
@@ -14,9 +14,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 $property_id    = $args['property_id'] ?? 0;
 $booking_id     = $args['booking_id'] ?? 0;
 $booking_status = $args['booking_status'] ?? 'new';
+
+// Динамические критерии из справочника
+$criteria = realty_get_review_criteria();
+$criteria_json = wp_json_encode( $criteria, JSON_UNESCAPED_UNICODE );
+$criteria_keys = array_keys( $criteria );
+$criteria_labels = array_values( $criteria );
 ?>
 
-<div id="vue-review-form">
+<div id="vue-review-form" data-criteria='<?php echo esc_attr( $criteria_json ); ?>'>
     <el-dialog 
         v-model="reviewParams.isVisible" 
         :destroy-on-close="true"
@@ -35,23 +41,14 @@ $booking_status = $args['booking_status'] ?? 'new';
             label-position="top"
         >
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-bottom:12px">
-                <el-form-item label="Цена/Качество" prop="price_quality" style="margin-bottom:0">
-                    <el-rate v-model="reviewForm.price_quality" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
-                </el-form-item>
-                <el-form-item label="Чистота" prop="cleanliness" style="margin-bottom:0">
-                    <el-rate v-model="reviewForm.cleanliness" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
-                </el-form-item>
-                <el-form-item label="Расположение" prop="location" style="margin-bottom:0">
-                    <el-rate v-model="reviewForm.location" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
-                </el-form-item>
-                <el-form-item label="Комфорт" prop="comfort" style="margin-bottom:0">
-                    <el-rate v-model="reviewForm.comfort" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
-                </el-form-item>
-                <el-form-item label="Питание" prop="food" style="margin-bottom:0">
-                    <el-rate v-model="reviewForm.food" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
-                </el-form-item>
-                <el-form-item label="Обслуживание" prop="service" style="margin-bottom:0">
-                    <el-rate v-model="reviewForm.service" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
+                <el-form-item
+                    v-for="(label, key) in criteria"
+                    :key="key"
+                    :label="label"
+                    :prop="key"
+                    style="margin-bottom:0"
+                >
+                    <el-rate v-model="reviewForm[key]" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
                 </el-form-item>
             </div>
 
@@ -76,28 +73,25 @@ $booking_status = $args['booking_status'] ?? 'new';
         const reviewLoading = ref(false);
         const reviewFormRef = ref(null);
 
-        const reviewForm = reactive({
-            price_quality: 0,
-            cleanliness: 0,
-            location: 0,
-            comfort: 0,
-            food: 0,
-            service: 0,
-            comment: '',
-        });
+        // Критерии из справочника
+        const criteria = JSON.parse(document.getElementById('vue-review-form').dataset.criteria || '{}');
+        const criteriaKeys = Object.keys(criteria);
 
-        const reviewRules = reactive({
-            price_quality: [{ required: true, message: 'Укажите оценку', trigger: 'blur' }],
-            cleanliness: [{ required: true, message: 'Укажите оценку', trigger: 'blur' }],
-            location: [{ required: true, message: 'Укажите оценку', trigger: 'blur' }],
-            comfort: [{ required: true, message: 'Укажите оценку', trigger: 'blur' }],
-            food: [{ required: true, message: 'Укажите оценку', trigger: 'blur' }],
-            service: [{ required: true, message: 'Укажите оценку', trigger: 'blur' }],
-            comment: [
-                { required: true, message: 'Напишите комментарий', trigger: 'blur' },
-                { min: 10, message: 'Минимум 10 символов', trigger: 'blur' },
-            ],
+        // Строим form динамически
+        const formDefaults = {};
+        const formRules = {};
+        criteriaKeys.forEach(key => {
+            formDefaults[key] = 0;
+            formRules[key] = [{ required: true, message: 'Укажите оценку', trigger: 'blur' }];
         });
+        formDefaults.comment = '';
+        formRules.comment = [
+            { required: true, message: 'Напишите комментарий', trigger: 'blur' },
+            { min: 10, message: 'Минимум 10 символов', trigger: 'blur' },
+        ];
+
+        const reviewForm = reactive(formDefaults);
+        const reviewRules = reactive(formRules);
 
         const reviewAjaxUrl = '<?php echo esc_js( admin_url( 'admin-ajax.php' ) ); ?>';
         const reviewNonce = '<?php echo esc_js( wp_create_nonce( 'property_filter_nonce' ) ); ?>';
@@ -112,12 +106,10 @@ $booking_status = $args['booking_status'] ?? 'new';
                 fd.append('action', 'submit_booking_review');
                 fd.append('nonce', reviewNonce);
                 fd.append('booking_id', reviewBookingId);
-                fd.append('rating_price_quality', reviewForm.price_quality);
-                fd.append('rating_cleanliness', reviewForm.cleanliness);
-                fd.append('rating_location', reviewForm.location);
-                fd.append('rating_comfort', reviewForm.comfort);
-                fd.append('rating_food', reviewForm.food);
-                fd.append('rating_service', reviewForm.service);
+                // Динамические поля: rating_{key}
+                criteriaKeys.forEach(key => {
+                    fd.append('rating_' + key, reviewForm[key]);
+                });
                 fd.append('comment', reviewForm.comment);
                 try {
                     const res = await fetch(reviewAjaxUrl, { method: 'POST', body: fd, credentials: 'same-origin' });
@@ -140,7 +132,7 @@ $booking_status = $args['booking_status'] ?? 'new';
 
         const AppReviewForm = createAppModule({
             setup() {
-                return { reviewParams, reviewLoading, reviewFormRef, reviewForm, reviewRules, submitReview };
+                return { reviewParams, reviewLoading, reviewFormRef, reviewForm, reviewRules, submitReview, criteria };
             },
         });
 
@@ -152,7 +144,6 @@ $booking_status = $args['booking_status'] ?? 'new';
         AppReviewForm.component('el-button', ElButton);
         AppReviewForm.mount('#vue-review-form');
 
-        // jQuery hook
         jQuery(document).on('click', '.js-rating-review', function(e) {
             e.preventDefault();
             reviewParams.isVisible = true;

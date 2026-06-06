@@ -22,37 +22,37 @@ $criteria_keys = array_keys( $criteria );
 $criteria_labels = array_values( $criteria );
 ?>
 
-<div id="vue-review-form" data-criteria='<?php echo esc_attr( $criteria_json ); ?>'>
+<div id="vue-review-form"  data-criteria='<?php echo esc_attr( $criteria_json ); ?>'>
     <el-dialog 
         v-model="reviewParams.isVisible" 
         :destroy-on-close="true"
         :close-on-click-modal="false"
         width="560px"
+        title="Поделитесь впечатлениями"
+        class="review-form"
     >
-        <div style="text-align:center;margin-bottom:12px">
-            <div style="font-size:17px;font-weight:600">Поделитесь впечатлениями</div>
-            <div style="font-size:13px;color:#909399;margin-top:4px">Ваш отзыв поможет другим гостям</div>
+        <div class="review-form-header">
+            <div class="subtitle">Ваш отзыв поможет другим гостям</div>
         </div>
-
         <el-form
             ref="reviewFormRef"
             :model="reviewForm"
             :rules="reviewRules"
             label-position="top"
         >
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;margin-bottom:12px">
+            <div class="review-form-criteria-grid">
                 <el-form-item
                     v-for="(label, key) in criteria"
                     :key="key"
                     :label="label"
                     :prop="key"
-                    style="margin-bottom:0"
+                    class="review-form-criteria-item"
                 >
-                    <el-rate v-model="reviewForm[key]" :max="10" size="large" show-score score-template="{value}" style="--el-rate-icon-size:22px" />
+                    <el-rate v-model="reviewForm[key]" :max="10" size="large" show-score score-template="{value}" class="review-form-rate" />
                 </el-form-item>
             </div>
 
-            <el-form-item label="Комментарий" prop="comment" style="margin-bottom:12px">
+            <el-form-item label="Комментарий" prop="comment" class="review-form-comment-item">
                 <el-input type="textarea" v-model="reviewForm.comment" :rows="3" placeholder="Расскажите о ваших впечатлениях (минимум 10 символов)" show-word-limit :maxlength="500" />
             </el-form-item>
         </el-form>
@@ -66,7 +66,7 @@ $criteria_labels = array_values( $criteria );
 
 <script type="module">
     (function() {
-        const { createAppModule, ElDialog, ElForm, ElFormItem, ElInput, ElRate, ElButton, ElMessage } = window.VueAppModule;
+        const { createAppModule, ElDialog, ElForm, ElFormItem, ElInput, ElRate, ElButton, ElMessage, ApiFetchService } = window.VueAppModule;
         const { ref, reactive, onMounted } = Vue;
 
         const reviewParams = reactive({ isVisible: false });
@@ -112,8 +112,7 @@ $criteria_labels = array_values( $criteria );
                 });
                 fd.append('comment', reviewForm.comment);
                 try {
-                    const res = await fetch(reviewAjaxUrl, { method: 'POST', body: fd, credentials: 'same-origin' });
-                    const data = await res.json();
+                    const data = await ApiFetchService.post(reviewAjaxUrl, fd);
                     if (data.success) {
                         ElMessage({ message: 'Спасибо! Ваш отзыв отправлен.', type: 'success' });
                         reviewParams.isVisible = false;

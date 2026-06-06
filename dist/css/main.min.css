@@ -5231,6 +5231,116 @@ body:has(.my-dashboard-layout) {
   color: #495057;
   white-space: pre-wrap;
 }
+.host-profile-dialog .host-bento-card .bento-bio-card {
+  margin: 0 24px 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+  overflow: hidden;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+.host-profile-dialog .host-bento-card .bento-bio-card .bio-card-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: stretch;
+      -ms-flex-align: stretch;
+          align-items: stretch;
+}
+.host-profile-dialog .host-bento-card .bento-bio-card .bio-card-wrapper .bio-card-sidebar {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 64px;
+  background: -webkit-gradient(linear, left top, left bottom, from(#1a6b5a), to(#307875));
+  background: linear-gradient(180deg, #1a6b5a 0%, #307875 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.host-profile-dialog .host-bento-card .bento-bio-card .bio-card-wrapper .bio-card-sidebar .bio-card-icon {
+  font-size: 28px !important;
+  color: rgba(255, 255, 255, 0.9);
+}
+.host-profile-dialog .host-bento-card .bento-bio-card .bio-card-wrapper .bio-card-content {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  padding: 18px 20px;
+}
+.host-profile-dialog .host-bento-card .bento-bio-card .bio-card-wrapper .bio-card-content .bio-card-title {
+  margin: 0 0 10px 0;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #1a6b5a;
+}
+.host-profile-dialog .host-bento-card .bento-bio-card .bio-card-wrapper .bio-card-content .bio-card-text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #495057;
+  white-space: pre-wrap;
+}
+.host-profile-dialog .host-bento-card .host-profile-loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 16px;
+  padding: 60px 0;
+  color: #6c757d;
+}
+.host-profile-dialog .host-bento-card .host-profile-loading .loading-spinner {
+  position: relative;
+  width: 48px;
+  height: 48px;
+}
+.host-profile-dialog .host-bento-card .host-profile-loading .loading-spinner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #e9ecef;
+  border-top-color: #1a6b5a;
+  border-radius: 50%;
+  -webkit-animation: spin 0.8s linear infinite;
+          animation: spin 0.8s linear infinite;
+}
+.host-profile-dialog .host-bento-card .host-profile-loading .loading-spinner .loading-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  font-size: 24px !important;
+  color: #1a6b5a;
+  -webkit-animation: pulse 1.5s ease-in-out infinite;
+          animation: pulse 1.5s ease-in-out infinite;
+}
+.host-profile-dialog .host-bento-card .host-profile-loading p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
 .host-profile-dialog .host-profile-loading {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -5310,6 +5420,16 @@ body:has(.my-dashboard-layout) {
     opacity: 0.5;
   }
 }
+.el-dialog.review-form .review-form-header {
+  margin-bottom: 12px;
+}
+.el-dialog.review-form .review-form-comment-item {
+  margin-bottom: 8px;
+}
+.el-dialog.review-form .el-form-item {
+  margin-bottom: 0px;
+}
+
 /**
  * Стили страницы настроек профиля
  */

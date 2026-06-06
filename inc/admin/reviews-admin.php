@@ -11,6 +11,10 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Подключаем переиспользуемые шаблоны
+require_once __DIR__ . '/template-parts/property-card.php';
+require_once __DIR__ . '/template-parts/booking-dates.php';
+
 /**
  * Регистрация страницы "Отзывы" в меню "Недвижимость"
  */
@@ -135,6 +139,24 @@ function realty_render_reviews_list() {
 }
 
 /**
+ * Подключение CSS для страницы отзывов
+ */
+function realty_enqueue_reviews_admin_assets( $hook ) {
+    $page = isset( $_GET['page'] ) ? sanitize_key( $_GET['page'] ) : '';
+    if ( 'reviews' !== $page ) {
+        return;
+    }
+
+    wp_enqueue_style(
+        'realty-reviews-admin',
+        get_template_directory_uri() . '/inc/admin/assets/css/messages.css',
+        array(),
+        '1.0.0'
+    );
+}
+add_action( 'admin_enqueue_scripts', 'realty_enqueue_reviews_admin_assets' );
+
+/**
  * Рендер детального просмотра отзыва
  */
 function realty_render_review_detail( $review_id ) {
@@ -149,13 +171,10 @@ function realty_render_review_detail( $review_id ) {
     $host_id = get_post_meta( $review_id, '_host_id', true );
     $client_id = get_post_field( 'post_author', $review_id );
     $comment = get_the_content( $review_id );
-    
+
     $client_info = get_userdata( $client_id );
     $client_name = $client_info ? $client_info->display_name : '—';
     $client_email = $client_info ? $client_info->user_email : '';
-
-    $property_title = $property_id ? get_the_title( $property_id ) : '—';
-    $property_url = $property_id ? get_permalink( $property_id ) : '';
 
     $host_info = get_userdata( $host_id );
     $host_name = $host_info ? $host_info->display_name : '—';
@@ -178,71 +197,65 @@ function realty_render_review_detail( $review_id ) {
         'food'          => 'Питание',
         'service'       => 'Обслуживание',
     );
+
+    // Получаем данные бронирования если есть
+    $booking_data = false;
+    if ( $booking_id ) {
+        $booking_data = realty_get_booking_data( $booking_id );
+    }
+
     ?>
-    <div class="wrap">
+    <div class="wrap review-detail-page">
         <h1 class="wp-heading-inline">Просмотр отзыва #<?php echo esc_html( $review_id ); ?></h1>
         <a href="<?php echo esc_url( admin_url( 'edit.php?post_type=property&page=reviews' ) ); ?>" class="page-title-action">← Назад к списку</a>
         <hr class="wp-header-end">
 
-        <div class="review-detail-layout" style="display: flex; gap: 30px; margin-top: 20px;">
-            <!-- Левая колонка: информация об объекте и бронировании -->
-            <div class="review-detail-main" style="flex: 1;">
-                <!-- Карточка объекта -->
-                <div class="postbox" style="padding: 20px; margin-bottom: 20px;">
-                    <h2 style="margin-top: 0;">Объект недвижимости</h2>
-                    <table class="form-table">
-                        <tr>
-                            <th style="width: 150px;">Название</th>
-                            <td>
-                                <strong><?php echo esc_html( $property_title ); ?></strong>
-                                <?php if ( $property_url ) : ?>
-                                    <a href="<?php echo esc_url( $property_url ); ?>" target="_blank" style="margin-left: 10px;">→ Просмотр на сайте</a>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                        <?php if ( $property_id ) : ?>
-                        <tr>
-                            <th>В админке</th>
-                            <td><a href="<?php echo esc_url( get_edit_post_link( $property_id ) ); ?>" target="_blank">Редактировать объект</a></td>
-                        </tr>
-                        <?php endif; ?>
-                    </table>
+        <div class="review-detail-layout">
+            <!-- Левая колонка (70%): контейнер с объектом и датами -->
+            <div class="review-detail-main">
+                <!-- Внутренняя сетка: объект (50%) и даты (50%) -->
+                <div class="review-inner-grid">
+                    <!-- Блок объекта недвижимости (50%) -->
+                    <?php if ( $property_id ) : ?>
+                        <?php realty_render_property_card( $property_id, 'review' ); ?>
+                    <?php else : ?>
+                        <div class="no-property-info">
+                            <span class="dashicons dashicons-warning"></span>
+                            <p>Отзыв не привязан к объекту недвижимости</p>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Блок дат бронирования (50%, рядом с объектом) -->
+                    <?php if ( $booking_data && ( $booking_data['checkin_date'] || $booking_data['checkout_date'] || ! empty( $booking_data['guests_count'] ) ) ) : ?>
+                        <?php realty_render_booking_dates_block( $booking_data, $booking_id ); ?>
+                    <?php endif; ?>
                 </div>
 
-                <!-- Информация о клиенте -->
-                <div class="postbox" style="padding: 20px; margin-bottom: 20px;">
-                    <h2 style="margin-top: 0;">Клиент</h2>
+                <!-- Блок клиента (100% ширина, после объекта и дат) -->
+                <div class="client-info-card">
+                    <h3 class="client-card-title">
+                        <span class="dashicons dashicons-admin-users"></span>
+                        Клиент
+                    </h3>
                     <table class="form-table">
-                        <tr><th style="width: 150px;">Имя</th><td><?php echo esc_html( $client_name ); ?></td></tr>
+                        <tr><th style="width: 100px;">Имя</th><td><?php echo esc_html( $client_name ); ?></td></tr>
                         <tr><th>Email</th><td><?php echo esc_html( $client_email ); ?></td></tr>
                         <tr><th>Хост</th><td><?php echo esc_html( $host_name ); ?></td></tr>
                     </table>
                 </div>
-
-                <!-- Даты бронирования -->
-                <?php if ( $booking_id ) : 
-                    $checkin = get_post_meta( $booking_id, '_checkin_date', true );
-                    $checkout = get_post_meta( $booking_id, '_checkout_date', true );
-                ?>
-                <div class="postbox" style="padding: 20px; margin-bottom: 20px;">
-                    <h2 style="margin-top: 0;">Даты бронирования</h2>
-                    <table class="form-table">
-                        <?php if ( $checkin ) : ?><tr><th style="width: 150px;">Заезд</th><td><?php echo esc_html( date_i18n( 'd F Y', strtotime( $checkin ) ) ); ?></td></tr><?php endif; ?>
-                        <?php if ( $checkout ) : ?><tr><th>Выезд</th><td><?php echo esc_html( date_i18n( 'd F Y', strtotime( $checkout ) ) ); ?></td></tr><?php endif; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
             </div>
 
-            <!-- Правая колонка: оценки и отзыв -->
-            <div class="review-detail-sidebar" style="width: 450px; min-width: 350px;">
-                <div class="postbox" style="padding: 20px; margin-bottom: 20px;">
-                    <h2 style="margin-top: 0;">Оценки и отзыв</h2>
-                    
+            <!-- Правая колонка (30%) - сайдбар: оценки и отзыв -->
+            <div class="review-detail-sidebar">
+                <div class="review-ratings-card">
+                    <h3 class="review-card-title">
+                        <span class="dashicons dashicons-star-filled"></span>
+                        Оценки и отзыв
+                    </h3>
+
                     <table class="form-table">
                         <?php foreach ( $labels as $key => $label ) : 
-                            $value = isset( $ratings[ $key ] ) ? $ratings[ $key ] : '—';
-                        ?>
+                            $value = isset( $ratings[ $key ] ) ? $ratings[ $key ] : '—'; ?>
                         <tr>
                             <th style="width: 180px;"><?php echo esc_html( $label ); ?></th>
                             <td><strong><?php echo esc_html( $value ); ?></strong> / 10</td>
@@ -257,9 +270,9 @@ function realty_render_review_detail( $review_id ) {
                     </table>
 
                     <?php if ( ! empty( $comment ) ) : ?>
-                    <div class="review-comment" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #ccd0d4;">
+                    <div class="review-comment">
                         <h3>Комментарий гостя</h3>
-                        <div style="background: #f0f0f1; padding: 15px; border-radius: 4px; line-height: 1.6;">
+                        <div class="review-comment-text">
                             <?php echo esc_html( $comment ); ?>
                         </div>
                     </div>
@@ -269,7 +282,7 @@ function realty_render_review_detail( $review_id ) {
         </div>
 
         <?php if ( $booking_id ) : ?>
-        <div class="review-booking-link" style="margin-top: 10px;">
+        <div class="review-booking-link">
             <a href="<?php echo esc_url( admin_url( 'admin.php?page=booking-messages&view=dialog&thread_id=' . get_post_meta( $booking_id, '_thread_id', true ) ) ); ?>" class="button">
                 Перейти к диалогу бронирования
             </a>

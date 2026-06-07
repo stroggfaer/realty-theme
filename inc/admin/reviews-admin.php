@@ -189,14 +189,8 @@ function realty_render_review_detail( $review_id ) {
     );
     $overall = get_post_meta( $review_id, '_rating_overall', true ) ?: '—';
 
-    $labels = array(
-        'price_quality' => 'Цена / Качество',
-        'cleanliness'   => 'Чистота',
-        'location'      => 'Расположение',
-        'comfort'       => 'Комфорт',
-        'food'          => 'Питание',
-        'service'       => 'Обслуживание',
-    );
+    // Получаем критерии оценки из справочника
+    $labels = realty_get_review_criteria();
 
     // Получаем данные бронирования если есть
     $booking_data = false;

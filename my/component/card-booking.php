@@ -305,7 +305,7 @@ if ( $checkout_date ) {
         <div class="my-booking-info">
             <div class="my-booking-rating">
                 <span class="material-symbols-outlined my-rating-star">star</span>
-                <span class="my-rating-value"><?php echo esc_html($property_rating); ?> (<?php echo esc_html($property_reviews); ?>)</span>
+                <span class="my-rating-value"><?php echo esc_html( floatval( $property_rating ) > 0 ? number_format_i18n( $property_rating, 1 ) : '—' ); ?> (<?php echo esc_html($property_reviews); ?>)</span>
             </div>
             <h2 class="my-booking-title">
                 <?php echo $property_data ? esc_html($property_data['title']) : 'Объект недвижимости'; ?>

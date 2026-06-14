@@ -74,7 +74,7 @@ $show_map_location = $args['show_map_location'] ?? false;
             <?php if ( realty_is_reviews_enabled() ) : 
                 $reviews_count = realty_get_property_reviews_count( $property_id );
             ?>
-            <div class="rating"><span class="material-symbols-outlined">star</span> <?php echo esc_html( number_format_i18n( $property_rating, 1 ) ); ?> <span class="reviews-count">(<?php echo esc_html( $reviews_count ); ?>)</span></div>
+            <div class="rating"><span class="material-symbols-outlined">star</span> <?php echo esc_html( floatval( $property_rating ) > 0 ? number_format_i18n( $property_rating, 1 ) : '—' ); ?> <span class="reviews-count">(<?php echo esc_html( $reviews_count ); ?>)</span></div>
             <?php endif; ?>
         </div>
         <div class="property-meta">

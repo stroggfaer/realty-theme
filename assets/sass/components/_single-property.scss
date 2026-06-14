@@ -161,6 +161,9 @@
             align-items: center;
             gap: 4px;
             font-size: 14px;
+            .material-symbols-outlined {
+                color: $color_orange;
+            }
         }
 
         .star-icon {

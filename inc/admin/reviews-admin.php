@@ -84,7 +84,8 @@ function realty_render_reviews_list() {
                     $review_id = get_the_ID();
                     $property_id = absint( get_post_meta( $review_id, '_property_id', true ) );
                     $client_id = absint( get_post_meta( $review_id, '_booking_id', true ) ? get_post_meta( $review_id, '_booking_id', true ) : get_post_field( 'post_author', $review_id ) );
-                    $overall = get_post_meta( $review_id, '_rating_overall', true ) ?: '—';
+                    $overall_meta = get_post_meta( $review_id, '_rating_overall', true );
+                    $overall = ( $overall_meta !== '' && floatval( $overall_meta ) > 0 ) ? $overall_meta : '—';
                     $client_info = get_userdata( get_post_field( 'post_author', $review_id ) );
                     $client_name = $client_info ? $client_info->display_name : '—';
                     $property_title = $property_id ? get_the_title( $property_id ) : '—';
@@ -187,7 +188,8 @@ function realty_render_review_detail( $review_id ) {
         'food'          => get_post_meta( $review_id, '_rating_food', true ),
         'service'       => get_post_meta( $review_id, '_rating_service', true ),
     );
-    $overall = get_post_meta( $review_id, '_rating_overall', true ) ?: '—';
+    $overall_meta = get_post_meta( $review_id, '_rating_overall', true );
+    $overall = ( $overall_meta !== '' && floatval( $overall_meta ) > 0 ) ? $overall_meta : '—';
 
     // Получаем критерии оценки из справочника
     $labels = realty_get_review_criteria();
@@ -249,7 +251,7 @@ function realty_render_review_detail( $review_id ) {
 
                     <table class="form-table">
                         <?php foreach ( $labels as $key => $label ) : 
-                            $value = isset( $ratings[ $key ] ) ? $ratings[ $key ] : '—'; ?>
+                            $value = ( isset( $ratings[ $key ] ) && floatval( $ratings[ $key ] ) > 0 ) ? $ratings[ $key ] : '—'; ?>
                         <tr>
                             <th style="width: 180px;"><?php echo esc_html( $label ); ?></th>
                             <td><strong><?php echo esc_html( $value ); ?></strong> / 10</td>

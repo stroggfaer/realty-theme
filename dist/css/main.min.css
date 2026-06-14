@@ -3522,6 +3522,9 @@ header.site-header .main-search-form-container .property-filter-form .el-input__
   gap: 4px;
   font-size: 14px;
 }
+.property-detail .property-aside .rating .material-symbols-outlined {
+  color: #F78522;
+}
 .property-detail .property-aside .star-icon {
   font-size: 18px !important;
   font-variation-settings: "FILL" 1;

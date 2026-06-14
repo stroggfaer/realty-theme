@@ -57,7 +57,7 @@ if ($pod && $value = get_post_meta($pod->id(), 'hours_limit', true)) {
         ?>
         <div class="rating">
             <span class="material-symbols-outlined star-icon">star</span>
-            <span class="rating-value"><?php echo esc_html( number_format_i18n( $avg_rating, 1 ) ); ?></span>
+            <span class="rating-value"><?php echo esc_html( floatval( $avg_rating ) > 0 ? number_format_i18n( $avg_rating, 1 ) : '—' ); ?></span>
             <span class="reviews-count">(<?php echo esc_html( $reviews_count ); ?>)</span>
         </div>
         <?php endif; ?>

@@ -30,6 +30,9 @@ $favicon = esc_url( get_template_directory_uri() ).'/favicon.ico';
 </head>
 
 <body <?php body_class(is_singular('property') ? 'single-property' : ''); ?> >
+
+<?php  get_template_part( 'template-parts/component/site-global-vue'); ?>
 <!--Подключаем интерефейс шапку -->
 <?php  get_template_part( 'template-parts/component/header'); ?>
 <!--./Подключаем интерефейс шапку -->
+<!--<button class="js-modal-auth" type="button">Click</button>-->

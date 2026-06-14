@@ -6,7 +6,12 @@ export default {
     appData: {
       type: Object,
       required: true
-    }
+    },
+    isModal: {
+      type: Boolean,
+      default: false
+    },
+
   },
 
   // language=Vue
@@ -69,14 +74,14 @@ export default {
         show-icon
         :closable="false"
         class="auth-form__alert"></el-alert>
-    </el-form>
+     </el-form>
 
     <div class="auth-form__divider"></div>
 
     <div class="auth-form__footer">
       <p class="auth-form__footer-hint">Нет аккаунта?</p>
       <p class="auth-form__footer-cta">Зарегистрируйтесь за 30 секунд</p>
-      <a href="#" class="auth-form__footer-link" @click.prevent="$emit('switchToRegister')">Создать новый аккаунт</a>
+      <a href="#" class="auth-form__footer-link" @click.prevent="handleRegisterClick">Создать новый аккаунт</a>
     </div>
   `,
 
@@ -87,7 +92,7 @@ export default {
     LockIcon: window.ElementPlusIconsVue?.Lock,
   },
 
-  setup(props) {
+  setup(props, { emit }) {
     const loginForm = reactive({
       email: '',
       password: '',
@@ -137,7 +142,7 @@ export default {
           });
 
           if (result.success) {
-            window.location.href = result.data?.redirect || props.appData.redirectUrl;
+            window.location.href = props.appData.redirectUrl || result.data?.redirect;
             return;
           }
 
@@ -150,6 +155,14 @@ export default {
       });
     };
 
+    const handleRegisterClick = () => {
+      if (!props.isModal) {
+        emit('switchToRegister');
+      } else {
+        document.location.href = '/my-auth/?tab=register'
+      }
+    };
+
     return {
       loginForm,
       loginLoading,
@@ -158,6 +171,7 @@ export default {
       loginRules,
       showForgot,
       submitLogin,
+      handleRegisterClick,
     };
   }
 };

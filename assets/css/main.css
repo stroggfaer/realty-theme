@@ -78,6 +78,22 @@ body {
   --el-collapse-border-color: transparent;
   --el-collapse-header-bg-color: transparent;
   --el-collapse-content-bg-color: transparent;
+  --el-dialog-padding-primary: 24px;
+  --el-border-radius-base: 12px;
+  --el-text-color-regular: #3f4948;
+  --el-color-primary-light-3: #6e9f9e;
+  --el-color-primary-light-5: #97bcbb;
+  --el-color-primary-light-7: #c1d6d5;
+  --el-color-primary-light-8: #d6e4e3;
+  --el-color-primary-light-9: #ebf1f1;
+}
+
+.el-dialog__title {
+  font-weight: 500;
+}
+
+.el-dialog__header {
+  padding-bottom: 10px;
 }
 
 .el-checkbox {
@@ -2851,6 +2867,82 @@ header.site-header .main-search-form-container .property-filter-form .el-input__
   cursor: auto;
 }
 
+.el-input-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 115px;
+  line-height: normal;
+  position: relative;
+}
+
+.el-input-number .el-input-number__decrease,
+.el-input-number .el-input-number__increase {
+  position: static;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #e4e7ed;
+  border-radius: 50%;
+  background: #fff;
+  color: #606266;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.el-input-number .el-input-number__decrease {
+  order: 1;
+}
+
+.el-input-number .el-input {
+  order: 2;
+  flex: 1;
+  margin: 0 8px;
+}
+
+.el-input-number .el-input-number__increase {
+  order: 3;
+}
+
+.el-input-number .el-input__wrapper {
+  padding: 0;
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.el-input-number .el-input__inner {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  padding: 0;
+}
+
+.el-input-number .el-input-number__decrease:hover:not(.is-disabled),
+.el-input-number .el-input-number__increase:hover:not(.is-disabled) {
+  border-color: #307875;
+  color: #307875;
+}
+
+.el-input-number .is-disabled {
+  background-color: #ffffff;
+  border-color: #f2f2f2;
+  color: #c0c4cc;
+  cursor: not-allowed;
+}
+
+.el-input-number input::-webkit-outer-spin-button,
+.el-input-number input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.el-input-number input[type=number] {
+  -moz-appearance: textfield;
+}
+
 .property-detail {
   margin-bottom: 30px;
 }
@@ -3016,7 +3108,7 @@ header.site-header .main-search-form-container .property-filter-form .el-input__
 }
 .property-detail .property-aside .reviews-count {
   color: #969696;
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
 }
 .property-detail .property-aside {
@@ -3142,6 +3234,152 @@ header.site-header .main-search-form-container .property-filter-form .el-input__
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid rgb(243, 244, 246);
+}
+.property-detail .property-reviews .reviews-summary {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 32px;
+}
+@media (max-width: 720px) {
+  .property-detail .property-reviews .reviews-summary {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+.property-detail .property-reviews .reviews-summary__overall {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 120px;
+  padding: 20px;
+  border-radius: 16px;
+  background: #F8F8F8;
+}
+.property-detail .property-reviews .reviews-summary__overall .star-icon {
+  font-size: 32px !important;
+  color: #F78522;
+  font-variation-settings: "FILL" 1;
+}
+.property-detail .property-reviews .reviews-summary__value {
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.property-detail .property-reviews .reviews-summary__count {
+  font-size: 14px;
+  color: #969696;
+  margin-top: 4px;
+}
+.property-detail .property-reviews .reviews-summary__criteria {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.property-detail .property-reviews .reviews-criterion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.property-detail .property-reviews .reviews-criterion__label {
+  min-width: 140px;
+  font-size: 14px;
+  color: #6b7280;
+}
+@media (max-width: 720px) {
+  .property-detail .property-reviews .reviews-criterion__label {
+    min-width: 100px;
+  }
+}
+.property-detail .property-reviews .reviews-criterion__bar {
+  flex: 1;
+  height: 8px;
+  background: rgb(243, 244, 246);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.property-detail .property-reviews .reviews-criterion__fill {
+  height: 100%;
+  background: #307875;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+.property-detail .property-reviews .reviews-criterion__value {
+  min-width: 30px;
+  text-align: right;
+  font-size: 14px;
+  font-weight: 600;
+}
+.property-detail .property-reviews .reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.property-detail .property-reviews .review-item {
+  padding: 20px;
+  border: 1px solid rgb(243, 244, 246);
+  border-radius: 16px;
+  background: #fff;
+}
+.property-detail .property-reviews .review-item__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.property-detail .property-reviews .review-item__author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.property-detail .property-reviews .review-item__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #307875;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.property-detail .property-reviews .review-item__meta {
+  display: flex;
+  flex-direction: column;
+}
+.property-detail .property-reviews .review-item__name {
+  font-size: 15px;
+  font-weight: 600;
+}
+.property-detail .property-reviews .review-item__date {
+  font-size: 13px;
+  color: #969696;
+}
+.property-detail .property-reviews .review-item__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.property-detail .property-reviews .review-item__rating .star-icon {
+  font-size: 20px !important;
+  color: #F78522;
+  font-variation-settings: "FILL" 1;
+}
+.property-detail .property-reviews .review-item__rating-value {
+  font-size: 16px;
+  font-weight: 700;
+}
+.property-detail .property-reviews .review-item__comment {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4f4f4f;
+}
+.property-detail .property-reviews .reviews-empty {
+  color: #969696;
+  font-size: 15px;
 }
 
 .property-booking-sidebar .booking-dates, .property-booking-sidebar .booking-guests {

@@ -223,6 +223,12 @@ export default {
 
     // Обработка кнопки "Написать хозяину"
     async function handleContactHost() {
+      const isLoggedIn = window.RealtyData?.isLoggedIn || false;
+      if (!isLoggedIn) {
+        $('.js-modal-auth').trigger('click');
+        return;
+      }
+
       // Проверка: хост не может написать сам себе
       if (props.currentUserId && props.currentUserId === props.ownerId) {
         window.location.href = '/my/dashboard/';

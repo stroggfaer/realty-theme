@@ -67,6 +67,8 @@ if (is_user_logged_in()) {
                         <?php  get_template_part( 'template-parts/content/single/property-characteristics', null, array('pod' => $pod)); ?>
 
                         <?php  get_template_part( 'template-parts/content/single/property-map', null, array('pod' => $pod)); ?>
+
+                        <?php  get_template_part( 'template-parts/content/single/property-reviews', null, array('pod' => $pod)); ?>
                     </div>
                 </div>
 

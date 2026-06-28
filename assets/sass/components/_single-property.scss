@@ -173,7 +173,7 @@
 
         .reviews-count {
             color: $color-dark-grey;
-            text-decoration: underline;
+            text-decoration: none;
             cursor: pointer;
         }
 
@@ -306,6 +306,173 @@
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid $color-border-ling;
+        }
+    }
+
+    // Отзывы
+    .property-reviews {
+        .reviews-summary {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-bottom: 32px;
+            @media (max-width: $media-xs) {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        .reviews-summary__overall {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 120px;
+            padding: 20px;
+            border-radius: $border-radius;
+            background: $color-medium-grey;
+            .star-icon {
+                font-size: 32px !important;
+                color: $color_orange;
+                font-variation-settings: 'FILL' 1;
+            }
+        }
+
+        .reviews-summary__value {
+            font-size: 36px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .reviews-summary__count {
+            font-size: 14px;
+            color: $color-dark-grey;
+            margin-top: 4px;
+        }
+
+        .reviews-summary__criteria {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .reviews-criterion {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .reviews-criterion__label {
+            min-width: 140px;
+            font-size: 14px;
+            color: $color-dark-grey-2;
+            @media (max-width: $media-xs) {
+                min-width: 100px;
+            }
+        }
+
+        .reviews-criterion__bar {
+            flex: 1;
+            height: 8px;
+            background: $color-border-ling;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .reviews-criterion__fill {
+            height: 100%;
+            background: $color-site;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .reviews-criterion__value {
+            min-width: 30px;
+            text-align: right;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .reviews-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .review-item {
+            padding: 20px;
+            border: 1px solid $color-border-ling;
+            border-radius: $border-radius;
+            background: $color-white;
+        }
+
+        .review-item__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .review-item__author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .review-item__avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: $color-site;
+            color: $color-white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .review-item__meta {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .review-item__name {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .review-item__date {
+            font-size: 13px;
+            color: $color-dark-grey;
+        }
+
+        .review-item__rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            .star-icon {
+                font-size: 20px !important;
+                color: $color_orange;
+                font-variation-settings: 'FILL' 1;
+            }
+        }
+
+        .review-item__rating-value {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .review-item__comment {
+            font-size: 15px;
+            line-height: 1.6;
+            color: $color-black-lite;
+        }
+
+        .reviews-empty {
+            color: $color-dark-grey;
+            font-size: 15px;
         }
     }
 }

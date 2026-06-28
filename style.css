@@ -97,7 +97,7 @@ video {
   vertical-align: baseline;
   font: inherit;
   font-size: 100%;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -405,7 +405,7 @@ address {
 }
 /* Links */
 a {
-  color: #F78522;
+  color: #307875;
   -webkit-transition: color 0.25s ease-in-out;
   -moz-transition: color 0.25s ease-in-out;
   -o-transition: color 0.25s ease-in-out;
@@ -416,7 +416,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: rgba(247, 133, 34, 0.6)
+  color: #08544a;
 }
 /* Alignment */
 .alignleft {

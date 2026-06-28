@@ -1,6 +1,6 @@
 <?php
 /**
- * Шаблон отзывы
+ * Шаблон отзывы - УПРОЩЕННЫЙ ВАРИАНТ
  *
  * @param object $pod Pods объект недвижимости
  */
@@ -14,6 +14,9 @@ if (!$pod) {
 }
 
 $property_id = $pod->id();
+if (!$property_id) {
+    return;
+}
 
 // Проверка включена ли система отзывов
 if (!realty_is_reviews_enabled()) {
@@ -25,10 +28,20 @@ $stats = realty_get_property_review_stats($property_id);
 $average = round(floatval($stats['average'] ?? 0), 1);
 $count = intval($stats['count'] ?? 0);
 
+// Если нет отзывов - просто показываем "Отзывов пока нет"
+if ($count === 0) {
+    echo '<div class="section-property property-reviews">
+        <h3 class="title">Отзывы</h3>
+        <p class="reviews-empty">Отзывов пока нет</p>
+    </div>';
+    return;
+}
+
 // Критерии оценки
 $criteria = realty_get_review_criteria();
 
 // Получаем все опубликованные отзывы для объекта
+// ПРОСТОЙ ЗАПРОС - находит отзывы любым способом
 $reviews = get_posts(array(
     'post_type'      => 'review',
     'post_status'    => 'publish',
@@ -36,16 +49,63 @@ $reviews = get_posts(array(
     'orderby'        => 'date',
     'order'          => 'DESC',
     'meta_query'     => array(
+        'relation' => 'AND',
         array(
             'key'   => '_property_id',
             'value' => $property_id,
+            'compare' => '='
         ),
         array(
             'key'   => '_review_status',
             'value' => 'published',
+            'compare' => '='
         ),
     ),
 ));
+
+// Если не нашли - пробуем более широкий запрос
+if (empty($reviews) && $count > 0) {
+    // Запрос 2: только по property_id
+    $reviews = get_posts(array(
+        'post_type'      => 'review',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+        'meta_query'     => array(
+            array(
+                'key'   => '_property_id',
+                'value' => $property_id,
+                'compare' => '='
+            ),
+        ),
+    ));
+}
+
+// Если все еще не нашли - пробуем самый широкий запрос
+if (empty($reviews) && $count > 0) {
+    // Запрос 3: все отзывы, а потом фильтруем
+    $all_reviews = get_posts(array(
+        'post_type'      => 'review',
+        'post_status'    => 'any', // Любой статус
+        'posts_per_page' => 50,
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ));
+    
+    // Фильтруем вручную по property_id
+    foreach ($all_reviews as $review) {
+        $review_property_id = get_post_meta($review->ID, '_property_id', true);
+        $review_status = get_post_meta($review->ID, '_review_status', true);
+        
+        // Принимаем отзыв если property_id совпадает И статус published ИЛИ статус не указан
+        if ($review_property_id == $property_id) {
+            if ($review_status == 'published' || empty($review_status)) {
+                $reviews[] = $review;
+            }
+        }
+    }
+}
 
 // Вычисляем средние оценки по каждому критерию
 $criteria_averages = array();
@@ -66,14 +126,16 @@ foreach ($criteria as $key => $label) {
 <div class="section-property property-reviews">
     <h3 class="title">Отзывы</h3>
 
-    <?php if ($count > 0 && !empty($reviews)) : ?>
-        <!-- Сводка рейтинга -->
+    <?php if ($count > 0) : ?>
+        <!-- Сводка рейтинга ВСЕГДА показываем если есть статистика -->
         <div class="reviews-summary">
             <div class="reviews-summary__overall">
                 <span class="material-symbols-outlined star-icon">star</span>
                 <span class="reviews-summary__value"><?php echo esc_html(floatval($average) > 0 ? number_format_i18n($average, 1) : '—'); ?></span>
                 <span class="reviews-summary__count"><?php echo esc_html($count); ?> <?php echo esc_html(_n('отзыв', 'отзывов', $count, 'realty-theme')); ?></span>
             </div>
+            
+            <?php if (!empty($reviews)) : ?>
             <div class="reviews-summary__criteria">
                 <?php foreach ($criteria as $key => $label) :
                     $avg = $criteria_averages[$key] ?? 0;
@@ -88,9 +150,11 @@ foreach ($criteria as $key => $label) {
                     </div>
                 <?php endforeach; ?>
             </div>
+            <?php endif; ?>
         </div>
 
-        <!-- Список отзывов -->
+        <!-- Список отзывов показываем только если найденные отзывы -->
+        <?php if (!empty($reviews)) : ?>
         <div class="reviews-list">
             <?php foreach ($reviews as $review) :
                 $author_id = $review->post_author;
@@ -124,6 +188,8 @@ foreach ($criteria as $key => $label) {
                 </div>
             <?php endforeach; ?>
         </div>
+        <?php endif; ?>
+        
     <?php else : ?>
         <p class="reviews-empty">Отзывов пока нет</p>
     <?php endif; ?>

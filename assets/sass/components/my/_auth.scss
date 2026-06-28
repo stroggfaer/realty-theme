@@ -235,8 +235,6 @@
   text-align: center;
   border-radius: 9px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
   // Скрываем если 0
   &[data-count="0"] {
     display: none !important;

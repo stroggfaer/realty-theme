@@ -308,7 +308,9 @@ if ( $checkout_date ) {
                 <span class="my-rating-value"><?php echo esc_html( floatval( $property_rating ) > 0 ? number_format_i18n( $property_rating, 1 ) : '—' ); ?> (<?php echo esc_html($property_reviews); ?>)</span>
             </div>
             <h2 class="my-booking-title">
-                <?php echo $property_data ? esc_html($property_data['title']) : 'Объект недвижимости'; ?>
+                <a href="<?php echo $property_id ? esc_url(get_permalink($property_id)) : '#'; ?>" target="_blank">
+                    <?php echo $property_data ? esc_html($property_data['title']) : 'Объект недвижимости'; ?>
+                </a>
             </h2>
             <div class="my-booking-status status-badge status-<?php echo esc_attr( $current_status['class'] ); ?>">
                 <?php echo esc_html( strtoupper( $current_status['label'] ) ); ?>

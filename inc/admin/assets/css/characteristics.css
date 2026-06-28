@@ -7,7 +7,7 @@
 .characteristics-groups-panel .button.button-primary,
 .characteristics-values-panel .button.button-primary {
     display: flex;
-    align-items: center;
+    align-items: normal;
     gap: 5px;
 }
 .characteristics-groups-panel {

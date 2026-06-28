@@ -3645,7 +3645,6 @@ header.site-header .main-search-form-container .property-filter-form .el-input__
 .property-detail .property-aside .reviews-count {
   color: #969696;
   text-decoration: none;
-  cursor: pointer;
 }
 .property-detail .property-aside {
   /* Блок профиля */

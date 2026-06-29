@@ -47,19 +47,17 @@
 
     // Lead paragraph styling (the first p)
     p:first-of-type {
-        font-style: italic;
-        font-size: 18px;
-        color: $color-dark-grey-2;
-        margin-bottom: 30px;
+        font-size: 16px;
+        //color: $color-dark-grey-2;
         line-height: 1.6;
     }
 
     p {
-        margin-bottom: 20px;
+        margin-bottom: 10px;
     }
 
     h2, h3 {
-        color: $color-site; // Dark teal/green as per screenshot
+        color: $color-black-normal;
         font-weight: 700;
         margin-top: 40px;
         margin-bottom: 20px;
@@ -75,12 +73,12 @@
     }
 
     ul {
-        margin-bottom: 25px;
-        padding-left: 25px;
+        margin-bottom: 10px;
+        padding-left: 15px;
         list-style: disc;
 
         li {
-            margin-bottom: 12px;
+            margin-bottom: 5px;
             color: $color-black-lite;
         }
     }

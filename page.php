@@ -16,11 +16,11 @@ get_header(); ?>
 					<div class="page-card">
 						<header class="page-header">
 							<h1 class="title"><?php the_title(); ?></h1>
-							<div class="page-meta">
-								<span class="meta-item">
-									<span class="material-symbols-outlined">calendar_today</span> <?php echo get_the_date(); ?>
-								</span>
-							</div>
+<!--							<div class="page-meta">-->
+<!--								<span class="meta-item">-->
+<!--									<span class="material-symbols-outlined">calendar_today</span> --><?php //echo get_the_date(); ?>
+<!--								</span>-->
+<!--							</div>-->
 						</header>
 
 						<div class="the-content">

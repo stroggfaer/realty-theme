@@ -494,11 +494,11 @@ article .meta .post-categories li {
   border-bottom: none;
 }
 .page article .title {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 /* Pagination */
 #pagination {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   width: 100%;
 }
 #pagination .past-page {

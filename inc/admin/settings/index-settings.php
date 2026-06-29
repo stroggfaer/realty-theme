@@ -423,10 +423,10 @@ function realty_theme_save_maps_settings() {
  */
 function realty_theme_save_home_settings() {
     if ( isset( $_POST['realty_home_title'] ) ) {
-        update_option( 'realty_home_title', sanitize_text_field( wp_unslash( $_POST['realty_home_title'] ) ) );
+        update_option( 'realty_home_title', wp_kses_post( wp_unslash( $_POST['realty_home_title'] ) ) );
     }
     if ( isset( $_POST['realty_home_subtitle'] ) ) {
-        update_option( 'realty_home_subtitle', sanitize_textarea_field( wp_unslash( $_POST['realty_home_subtitle'] ) ) );
+        update_option( 'realty_home_subtitle', wp_kses_post( wp_unslash( $_POST['realty_home_subtitle'] ) ) );
     }
     if ( isset( $_POST['realty_home_cta_text'] ) ) {
         update_option( 'realty_home_cta_text', sanitize_text_field( wp_unslash( $_POST['realty_home_cta_text'] ) ) );
@@ -550,7 +550,7 @@ function realty_get_booking_notice_confirmed() {
  * @since 1.0.0
  */
 function realty_get_home_title() {
-    return get_option( 'realty_home_title', __( 'Найдите свой идеальный дом', 'realty-theme' ) );
+    return wp_kses_post( get_option( 'realty_home_title', __( 'Найдите свой идеальный дом', 'realty-theme' ) ) );
 }
 
 /**
@@ -560,7 +560,7 @@ function realty_get_home_title() {
  * @since 1.0.0
  */
 function realty_get_home_subtitle() {
-    return get_option( 'realty_home_subtitle', '' );
+    return wp_kses_post( get_option( 'realty_home_subtitle', '' ) );
 }
 
 /**

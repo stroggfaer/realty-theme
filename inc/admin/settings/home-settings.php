@@ -48,9 +48,7 @@ function realty_render_home_settings() {
                 </label>
             </th>
             <td>
-                <textarea name="realty_home_subtitle" id="realty_home_subtitle" rows="3" class="large-text">
-                    <?php echo esc_textarea( get_option( 'realty_home_subtitle', '' ) ); ?>
-                </textarea>
+                <textarea name="realty_home_subtitle" id="realty_home_subtitle" rows="3" class="large-text"><?php echo esc_textarea( get_option( 'realty_home_subtitle', '' ) ); ?></textarea>
                 <p class="description">
                     <?php esc_html_e( 'Введите подзаголовок для главной страницы.', 'realty-theme' ); ?>
                 </p>

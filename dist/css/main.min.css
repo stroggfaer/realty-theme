@@ -4521,7 +4521,7 @@ header.site-header .main-search-form-container .property-filter-form .el-input__
 .location-banner__title {
   font-size: 32px;
   font-weight: 700;
-  margin: 0 0 16px;
+  margin: 0;
 }
 .location-banner__description {
   color: #717171;
@@ -6244,17 +6244,14 @@ body:has(.my-dashboard-layout) {
   font-size: 16px;
 }
 .the-content p:first-of-type {
-  font-style: italic;
-  font-size: 18px;
-  color: #6b7280;
-  margin-bottom: 30px;
+  font-size: 16px;
   line-height: 1.6;
 }
 .the-content p {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .the-content h2, .the-content h3 {
-  color: #307875;
+  color: #2F3034;
   font-weight: 700;
   margin-top: 40px;
   margin-bottom: 20px;
@@ -6267,12 +6264,12 @@ body:has(.my-dashboard-layout) {
   font-size: 22px;
 }
 .the-content ul {
-  margin-bottom: 25px;
-  padding-left: 25px;
+  margin-bottom: 10px;
+  padding-left: 15px;
   list-style: disc;
 }
 .the-content ul li {
-  margin-bottom: 12px;
+  margin-bottom: 5px;
   color: #4f4f4f;
 }
 .the-content a {

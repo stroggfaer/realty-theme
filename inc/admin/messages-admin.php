@@ -221,6 +221,7 @@ function my_cabinet_messages_list_page() {
                         <option value="new" <?php selected( $status_filter, 'new' ); ?>>Новая заявка</option>
                         <option value="in_progress" <?php selected( $status_filter, 'in_progress' ); ?>>В процессе</option>
                         <option value="confirmed" <?php selected( $status_filter, 'confirmed' ); ?>>Подтверждена</option>
+                        <option value="checkin" <?php selected( $status_filter, 'checkin' ); ?>>Заселение</option>
                         <option value="completed" <?php selected( $status_filter, 'completed' ); ?>>Завершена</option>
                         <option value="cancelled" <?php selected( $status_filter, 'cancelled' ); ?>>Отменена</option>
                     </select>

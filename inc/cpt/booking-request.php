@@ -133,10 +133,10 @@ function my_cabinet_register_booking_request_meta() {
         ),
         '_status'           => array(
             'type'              => 'string',
-            'description'       => 'Статус заявки (pending/new/in_progress/confirmed/completed/cancelled)',
+            'description'       => 'Статус заявки (pending/new/in_progress/confirmed/checkin/completed/cancelled)',
             'single'            => true,
             'sanitize_callback' => function( $value ) {
-                $valid_statuses = array( 'pending', 'new', 'in_progress', 'confirmed', 'completed', 'cancelled' );
+                $valid_statuses = array( 'pending', 'new', 'in_progress', 'confirmed', 'checkin', 'completed', 'cancelled' );
                 return in_array( $value, $valid_statuses, true ) ? $value : 'new';
             },
             'auth_callback'     => function() {

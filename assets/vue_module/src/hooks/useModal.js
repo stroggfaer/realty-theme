@@ -4,13 +4,15 @@ export default function Modal() {
     const dialogParams = reactive({
         isVisible: false,
         title: '',
-        record: {}
+        record: {},
+        mode: ''
     });
 
     const onDialogClose = () => {
         dialogParams.record = {};
         dialogParams.title = '';
         dialogParams.isVisible = false;
+        dialogParams.mode = '';
     }
     /*---./Dialog---*/
     return {

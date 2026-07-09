@@ -41,8 +41,8 @@ if (empty($group) || empty($group['characteristics'])) {
             <span class="material-symbols-outlined">group</span>
         </div>
         <div class="feature-text">
-            <span class="label">GUESTS</span>
-            <span class="value">Up to <?php echo esc_html($guests); ?></span>
+            <span class="label">Гости</span>
+            <span class="value">До <?php echo esc_html($guests); ?></span>
         </div>
     </div>
     <?php endif; ?>

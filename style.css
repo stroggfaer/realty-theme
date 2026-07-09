@@ -2,7 +2,7 @@
 Theme Name: realty-theme
 Theme URI:
 Author: Rendzhi
-Description: Недвижимость
+Description: Тема для сайта недвижимости с карточками объектов, фильтрами и настройками главной страницы, личного кабинета и прочих разделов.
 Version: 1.2
 License: GNU General Public License
 
@@ -97,7 +97,7 @@ video {
   vertical-align: baseline;
   font: inherit;
   font-size: 100%;
-  font-family: 'Manrope', sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -405,7 +405,7 @@ address {
 }
 /* Links */
 a {
-  color: #F78522;
+  color: #307875;
   -webkit-transition: color 0.25s ease-in-out;
   -moz-transition: color 0.25s ease-in-out;
   -o-transition: color 0.25s ease-in-out;
@@ -416,7 +416,7 @@ a {
 a:hover,
 a:focus,
 a:active {
-  color: rgba(247, 133, 34, 0.6)
+  color: #08544a;
 }
 /* Alignment */
 .alignleft {
@@ -494,11 +494,11 @@ article .meta .post-categories li {
   border-bottom: none;
 }
 .page article .title {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 /* Pagination */
 #pagination {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   width: 100%;
 }
 #pagination .past-page {
@@ -514,7 +514,6 @@ article .meta .post-categories li {
 }
 .next-page a, .past-page a {
   font-size: 2em;
-  font-family: "Quicksand", Helvetica, sans-serif;
   font-weight: 400;
   font-style: italic;
   padding: 10%;

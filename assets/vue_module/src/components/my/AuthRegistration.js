@@ -62,7 +62,7 @@ export default {
 
       <el-form-item prop="consentAgreed">
         <el-checkbox v-model="registerForm.consentAgreed">
-          Я даю согласие на <a href="#" class="auth-form__consent-link" @click.prevent>обработку персональных данных</a>
+          Я даю согласие на <a href="/privacy-policy/" target="_blank" class="auth-form__consent-link">обработку персональных данных</a>
         </el-checkbox>
       </el-form-item>
       <el-alert

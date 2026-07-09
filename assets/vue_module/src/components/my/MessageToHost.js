@@ -66,8 +66,9 @@ export default {
         </div>
       </div>
 
-      <!-- Форма -->
+      <!-- Форма (скрыта для завершённых/отменённых бронирований) -->
       <el-form
+          v-if="!['completed', 'cancelled'].includes(appData.bookingStatus)"
           ref="messageFormRef"
           :model="messageForm"
           :rules="messageRules"

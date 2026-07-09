@@ -942,6 +942,126 @@ function my_cabinet_ajax_get_user_threads() {
 add_action( 'wp_ajax_my_cabinet_get_user_threads', 'my_cabinet_ajax_get_user_threads' );
 
 // ============================================================
+// AJAX: Получение списка архивных бронирований (completed|cancelled)
+// ============================================================
+
+/**
+ * AJAX: Получение списка завершённых/отменённых бронирований для ЛК
+ * Использует ту же структуру данных что и my_cabinet_ajax_get_user_threads
+ * но фильтруется по статусам booking_request = completed|cancelled
+ */
+function my_cabinet_ajax_get_archive_threads() {
+    // Проверка nonce
+    if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'my_cabinet_get_threads_nonce' ) ) {
+        wp_send_json_error( array( 'message' => 'Ошибка безопасности. Обновите страницу.' ) );
+    }
+
+    // Проверка авторизации
+    if ( ! is_user_logged_in() ) {
+        wp_send_json_error( array( 'message' => 'Необходимо авторизоваться.' ) );
+    }
+
+    $current_user_id = get_current_user_id();
+
+    // Получаем все booking_requests текущего пользователя со статусами completed/cancelled
+    $args = array(
+        'post_type'      => 'booking_request',
+        'post_status'    => 'publish',
+        'posts_per_page' => -1,
+        'meta_query'     => array(
+            array(
+                'key'     => '_client_id',
+                'value'   => $current_user_id,
+            ),
+            array(
+                'key'     => '_status',
+                'value'   => array( 'completed', 'cancelled' ),
+                'compare' => 'IN',
+            ),
+        ),
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    );
+
+    $query = new WP_Query( $args );
+    $threads = array();
+
+    if ( $query->have_posts() ) {
+        while ( $query->have_posts() ) {
+            $query->the_post();
+            
+            $booking_id = get_the_ID();
+            $property_id = (int) get_post_meta( $booking_id, '_property_id', true );
+            $thread_id = get_post_meta( $booking_id, '_thread_id', true );
+            $status = get_post_meta( $booking_id, '_status', true );
+            $checkin_date = get_post_meta( $booking_id, '_checkin_date', true );
+            $checkout_date = get_post_meta( $booking_id, '_checkout_date', true );
+            
+            $property_post = get_post( $property_id );
+            if ( ! $property_post ) {
+                $threads[] = array(
+                    'property_id'       => $property_id,
+                    'property_title'    => '(объект удалён)',
+                    'property_image'    => '',
+                    'property_url'      => '',
+                    'location'          => '',
+                    'address'           => '',
+                    'checkin_date'      => $checkin_date,
+                    'checkout_date'     => $checkout_date,
+                    'dates_display'     => $checkin_date && $checkout_date ? date_i18n( 'd.m.Y', strtotime( $checkin_date ) ) . ' - ' . date_i18n( 'd.m.Y', strtotime( $checkout_date ) ) : '',
+                    'status'            => $status === 'completed' ? 'Завершено' : 'Отменено',
+                    'status_key'        => $status,
+                    'thread_id'         => $thread_id,
+                );
+                continue;
+            }
+            
+            $property_title = $property_post->post_title;
+            $property_thumbnail = get_the_post_thumbnail_url( $property_id, 'thumbnail' );
+            $property_url = get_permalink( $property_id );
+            
+            $location_terms = get_the_terms( $property_id, 'location' );
+            $location_name = '';
+            if ( $location_terms && ! is_wp_error( $location_terms ) ) {
+                $location_name = $location_terms[0]->name;
+            }
+            $address = get_post_meta( $property_id, 'address', true );
+            
+            $dates_display = '';
+            if ( $checkin_date && $checkout_date ) {
+                $dates_display = date_i18n( 'd.m.Y', strtotime( $checkin_date ) ) . ' - ' . date_i18n( 'd.m.Y', strtotime( $checkout_date ) );
+            }
+            
+            // Метка статуса
+            $booking_statuses = realty_get_booking_statuses();
+            $status_label = isset( $booking_statuses[ $status ] ) ? $booking_statuses[ $status ]['label'] : ( $status === 'completed' ? 'Завершено' : 'Отменено' );
+            
+            $threads[] = array(
+                'property_id'       => $property_id,
+                'property_title'    => $property_title,
+                'property_image'    => $property_thumbnail ?: '',
+                'property_url'      => $property_url,
+                'location'          => $location_name,
+                'address'           => $address ?: '',
+                'checkin_date'      => $checkin_date,
+                'checkout_date'     => $checkout_date,
+                'dates_display'     => $dates_display,
+                'status'            => $status_label,
+                'status_key'        => $status,
+                'thread_id'         => $thread_id,
+            );
+        }
+        wp_reset_postdata();
+    }
+
+    wp_send_json_success( array(
+        'threads' => $threads,
+        'total'   => count( $threads ),
+    ) );
+}
+add_action( 'wp_ajax_my_cabinet_get_archive_threads', 'my_cabinet_ajax_get_archive_threads' );
+
+// ============================================================
 // AJAX: Получение списка диалогов (для админки)
 // ============================================================
 

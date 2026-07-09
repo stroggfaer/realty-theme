@@ -52,7 +52,7 @@ export default {
 - Создаем расширентя .js для vue модули
 - Используется подход CDN
 - Для компонента создаем HelloWord.js
-
+- Использовать UI Element Plus https://element-plus.org/en-US/component/overview
 Правило для php/html:
 - В php temp данные отправляеи json формат для vue
 - json экранируем данные кавычки и т.д.

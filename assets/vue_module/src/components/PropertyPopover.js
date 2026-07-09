@@ -44,7 +44,7 @@ export default {
       <!-- Информация об объекте -->
       <div class="custom-popover__info">
         <div class="popover-header">
-          <span class="rating-badge">{{ propertyData.rating }}</span>
+          <span class="rating-badge">{{ propertyData.rating > 0 ? propertyData.rating : '—' }}</span>
           <button
             class="favorite-btn js-favorite"
             :data-property-id="propertyData.id"

@@ -41,5 +41,9 @@ if ( ! defined( 'SYSTEM_CHARACTERISTIC_GROUP_OPTIONS' ) ) {
             'value' => 'hours_limit',
             'label' => 'Период аренды',
         ),
+        array(
+            'value' => 'system_review',
+            'label' => 'Оценки',
+        ),
     ) );
 }

@@ -421,7 +421,7 @@ body:has(.my-dashboard-layout) {
   .my-message-section {
     margin-top: 24px;
   }
-  
+
   // ── Section Title ───────────────────────────────────────────
   .my-section-title {
     font-size: 22px;
@@ -429,7 +429,7 @@ body:has(.my-dashboard-layout) {
     margin: 0 0 20px;
     color: var(--color-text);
   }
-  
+
   // ── Threads Table ───────────────────────────────────────────
   .my-threads-container {
     background: var(--color-white);
@@ -437,37 +437,37 @@ body:has(.my-dashboard-layout) {
     box-shadow: var(--shadow-card);
     overflow: hidden;
   }
-  
+
   .my-threads-loading {
     padding: 60px 20px;
     text-align: center;
     color: var(--color-text-muted);
-    
+
     .spinning {
       font-size: 48px;
       animation: spin 1s linear infinite;
       margin-bottom: 12px;
     }
-    
+
     p {
       margin: 0;
       font-size: 14px;
     }
   }
-  
+
   @keyframes spin {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
-  
+
   .my-threads-table {
     width: 100%;
     border-collapse: collapse;
-    
+
     thead {
       background: #f9fafb;
       border-bottom: 2px solid var(--color-border);
-      
+
       th {
         padding: 14px 16px;
         text-align: left;
@@ -478,30 +478,30 @@ body:has(.my-dashboard-layout) {
         color: var(--color-text-muted);
       }
     }
-    
+
     tbody {
       tr {
         border-bottom: 1px solid var(--color-border);
         transition: background 0.15s;
-        
+
         &:last-child {
           border-bottom: none;
         }
-        
+
         &:hover {
           background: #f9fafb;
         }
       }
-      
+
       td {
         padding: 16px;
         vertical-align: middle;
       }
     }
-    
+
     .col-preview {
       width: 80px;
-      
+
       .thread-property-img {
         width: 70px;
         height: 55px;
@@ -509,46 +509,46 @@ body:has(.my-dashboard-layout) {
         border-radius: var(--radius-sm);
         display: block;
       }
-      
+
       .no-image {
         font-size: 40px;
         color: var(--color-text-light);
       }
     }
-    
+
     .col-name {
       .thread-property-link {
         color: var(--color-primary);
         text-decoration: none;
         font-weight: 600;
         font-size: 14px;
-        
+
         &:hover {
           text-decoration: underline;
         }
       }
     }
-    
+
     .col-city {
       color: var(--color-text-muted);
       font-size: 13px;
     }
-    
+
     .col-address {
       font-size: 13px;
       max-width: 200px;
     }
-    
+
     .col-dates {
       font-size: 13px;
       font-weight: 500;
       white-space: nowrap;
     }
-    
+
     .col-status {
       // Status styles moved to global .status-badge
     }
-    
+
     .col-actions {
       .thread-view-btn {
         padding: 8px 16px;
@@ -557,7 +557,7 @@ body:has(.my-dashboard-layout) {
       }
     }
   }
-  
+
   // ── Global Status Badges ─────────────────────────────────
   .status-badge {
     display: inline-block;
@@ -565,37 +565,37 @@ body:has(.my-dashboard-layout) {
     border-radius: 20px;
     font-size: 12px;
     font-weight: 600;
-    
+
     &.status-new {
       background: #0073aa;
       color: #fff;
       border: 1px solid #0073aa;
     }
-    
+
     &.status-pending {
       background: var(--color-status-bg);
       color: var(--color-status-text);
       border: 1px solid var(--color-status-border);
     }
-    
+
     &.status-confirmed {
       background: var(--color-primary-light);
       color: var(--color-primary);
       border: 1px solid var(--color-notice-border);
     }
-    
+
     &.status-checkin {
       background: #e3f7fc;
       color: #5bc0de;
       border: 1px solid #5bc0de;
     }
-    
+
     &.status-completed, &.status-in_progress {
       background: #f5f5f5;
       color: #777777;
       border: 1px solid #999999;
     }
-    
+
     &.status-cancelled {
       background: #fce4e4;
       color: #d9534f;
@@ -867,6 +867,103 @@ body:has(.my-dashboard-layout) {
         }
       }
     }
+
+    // ── Bio Section - Alternative Card Layout ─────────────
+    .bento-bio-card {
+      margin: 0 24px 24px;
+      background: #ffffff;
+      border-radius: 12px;
+      border: 1px solid #e9ecef;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+      .bio-card-wrapper {
+        display: flex;
+        align-items: stretch;
+
+        .bio-card-sidebar {
+          flex-shrink: 0;
+          width: 64px;
+          background: linear-gradient(180deg, #1a6b5a 0%, #307875 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .bio-card-icon {
+            font-size: 28px !important;
+            color: rgba(255, 255, 255, 0.9);
+          }
+        }
+
+        .bio-card-content {
+          flex: 1;
+          padding: 18px 20px;
+
+          .bio-card-title {
+            margin: 0 0 10px 0;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #1a6b5a;
+          }
+
+          .bio-card-text {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #495057;
+            white-space: pre-wrap;
+          }
+        }
+      }
+    }
+
+    // ── Loading State ───────────────────────────────────────
+    .host-profile-loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 60px 0;
+      color: #6c757d;
+
+      .loading-spinner {
+        position: relative;
+        width: 48px;
+        height: 48px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border: 3px solid #e9ecef;
+          border-top-color: #1a6b5a;
+          border-radius: 50%;
+          animation: spin 0.8s linear infinite;
+        }
+
+        .loading-icon {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          font-size: 24px !important;
+          color: #1a6b5a;
+          animation: pulse 1.5s ease-in-out infinite;
+        }
+      }
+
+      p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
+      }
+    }
   }
 
   // ── Loading State ───────────────────────────────────────
@@ -931,5 +1028,18 @@ body:has(.my-dashboard-layout) {
   }
   50% {
     opacity: 0.5;
+  }
+}
+// ── Review Form Modal ──────────────────────────────────────
+
+.el-dialog.review-form {
+  .review-form-header {
+    margin-bottom: 12px;
+  }
+  .review-form-comment-item {
+    margin-bottom: 8px;
+  }
+  .el-form-item {
+     margin-bottom: 0px;
   }
 }

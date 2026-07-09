@@ -45,7 +45,8 @@ import {
   ElAlert,
   ElNotification,
 } from 'element-plus';
-import {ApiService} from './src/services/api';
+import { ApiService } from './src/services/api';
+import { ApiFetchService } from './src/services/api-fetch.js';
 export function createAppModule(options = {}) {
   const app = Vue.createApp(options);
   app.config.compilerOptions =  {
@@ -89,6 +90,7 @@ export {
   ElAlert,
   ElNotification,
   ApiService,
+  ApiFetchService,
   useProperty,
   usePropertyFilters,
   useModal,

@@ -51,28 +51,9 @@ jQuery(document).ready(function($) {
         const ajaxUrl = window.RealtyData?.ajaxUrl || '/wp-admin/admin-ajax.php';
         const nonce = window.RealtyData?.favoriteNonce || '';
 
-        // Если не авторизован — показать dialog
+        // Если не авторизован — открыть модалку авторизации
         if (!isLoggedIn) {
-            if (typeof ElementPlus !== 'undefined' && ElementPlus.ElMessageBox) {
-                ElementPlus.ElMessageBox.confirm(
-                    'Для добавления в избранное необходимо войти',
-                    'Авторизация',
-                    {
-                        confirmButtonText: 'Войти',
-                        cancelButtonText: 'Отмена',
-                        type: 'warning'
-                    }
-                ).then(() => {
-                    window.location.href = '/my-auth/?redirect_to=' + encodeURIComponent(window.location.href);
-                }).catch(() => {
-                    // Пользователь отменил
-                });
-            } else {
-                // Fallback без Element Plus
-                if (confirm('Для добавления в избранное необходимо войти. Перейти на страницу входа?')) {
-                    window.location.href = '/my-auth/?redirect_to=' + encodeURIComponent(window.location.href);
-                }
-            }
+            $('.js-modal-auth').trigger('click');
             return;
         }
 

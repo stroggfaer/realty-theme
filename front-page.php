@@ -13,8 +13,8 @@ get_header(); ?>
             <!-- Визуальный баннер с формой поиска -->
             <section class="hero-banner">
                 <div class="hero-content">
-                    <h1 class="hero-title">Найдите идеальное жилье<br> для вашего отдыха</h1>
-                    <div class="hero-subtitle">Более 10,000 вариантов аренды по всему миру</div>
+                    <h1 class="hero-title"><?php echo wp_kses_post( nl2br( realty_get_home_title() ) ); ?></h1>
+                    <div class="hero-subtitle"><?php echo wp_kses_post( nl2br( realty_get_home_subtitle() ) ); ?></div>
 
                     <!-- Форма поиска недвижимости -->
                     <div class="main-search-form-container">

@@ -78,6 +78,24 @@
   --el-collapse-border-color: transparent;
   --el-collapse-header-bg-color: transparent;
   --el-collapse-content-bg-color: transparent;
+
+  --el-dialog-padding-primary: 24px;
+  --el-border-radius-base: 12px;
+
+  --el-text-color-regular: #3f4948;
+
+  --el-color-primary-light-3: #6e9f9e;
+  --el-color-primary-light-5: #97bcbb;
+  --el-color-primary-light-7: #c1d6d5;
+  --el-color-primary-light-8: #d6e4e3;
+  --el-color-primary-light-9: #ebf1f1;
+
+}
+.el-dialog__title {
+  font-weight: 500;
+}
+.el-dialog__header {
+  padding-bottom: 10px;
 }
 // ──────────────── CHECKBOX ────────────────
 .el-checkbox {
@@ -217,6 +235,10 @@
     --el-button-active-bg-color: var(--ui-color-primary-dark);
     --el-button-active-border-color: var(--ui-color-primary-dark);
   }
+  //&.el-button--primary:hover {
+  //  border-color: var(--el-button-hover-border-color);
+  //  background-color: var(--el-button-hover-bg-color);
+  //}
   
   &--danger {
     --el-button-bg-color: var(--ui-color-danger);
@@ -239,6 +261,10 @@
       font-size: 20px;
     }
   }
+  //&:hover {
+  //  border-color: $color_green;
+  //  background-color: $color_green_ling;
+  //}
 }
 
 // ──────────────── SLIDER ────────────────

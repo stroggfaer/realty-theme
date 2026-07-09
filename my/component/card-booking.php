@@ -220,8 +220,8 @@ $property_location = '';
 $property_address = '';
 $property_lat = '';
 $property_lng = '';
-$property_rating = '4.9';
-$property_reviews = '128';
+$property_rating = realty_get_property_review_average_rating( $property_id );
+$property_reviews = realty_get_property_reviews_count( $property_id );
 
 if ( $property_id > 0 ) {
     $property = get_post( $property_id );
@@ -305,10 +305,12 @@ if ( $checkout_date ) {
         <div class="my-booking-info">
             <div class="my-booking-rating">
                 <span class="material-symbols-outlined my-rating-star">star</span>
-                <span class="my-rating-value"><?php echo esc_html($property_rating); ?> (<?php echo esc_html($property_reviews); ?>)</span>
+                <span class="my-rating-value"><?php echo esc_html( floatval( $property_rating ) > 0 ? number_format_i18n( $property_rating, 1 ) : '—' ); ?> (<?php echo esc_html($property_reviews); ?>)</span>
             </div>
             <h2 class="my-booking-title">
-                <?php echo $property_data ? esc_html($property_data['title']) : 'Объект недвижимости'; ?>
+                <a href="<?php echo $property_id ? esc_url(get_permalink($property_id)) : '#'; ?>" target="_blank">
+                    <?php echo $property_data ? esc_html($property_data['title']) : 'Объект недвижимости'; ?>
+                </a>
             </h2>
             <div class="my-booking-status status-badge status-<?php echo esc_attr( $current_status['class'] ); ?>">
                 <?php echo esc_html( strtoupper( $current_status['label'] ) ); ?>

@@ -17,7 +17,7 @@ $favicon = esc_url( get_template_directory_uri() ).'/favicon.ico';
 </title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <!--google-->
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=block" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet"/>
 <!--./google-->
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -30,6 +30,9 @@ $favicon = esc_url( get_template_directory_uri() ).'/favicon.ico';
 </head>
 
 <body <?php body_class(is_singular('property') ? 'single-property' : ''); ?> >
+
+<?php  get_template_part( 'template-parts/component/site-global-vue'); ?>
 <!--Подключаем интерефейс шапку -->
 <?php  get_template_part( 'template-parts/component/header'); ?>
 <!--./Подключаем интерефейс шапку -->
+<!--<button class="js-modal-auth" type="button">Click</button>-->

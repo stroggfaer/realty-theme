@@ -175,7 +175,6 @@ require get_template_directory() . '/inc/admin/messages-admin.php';
 require get_template_directory() . '/my/cpt/cpt-registration.php';
 require get_template_directory() . '/inc/cpt/booking-request.php';
 require get_template_directory() . '/inc/cpt/review.php';
-require get_template_directory() . '/inc/migrations/migrate-messages-to-booking.php';
 require get_template_directory() . '/inc/features/booking/booking-functions.php';
 require get_template_directory() . '/inc/features/review/review-functions.php';
 require get_template_directory() . '/inc/admin/reviews-admin.php';

@@ -27,13 +27,13 @@ WordPress-тема для сервиса аренды недвижимости �
 📍 [Посетить демо-сайт](https://www.estatestay.ruszzz.ru/)
 
 ### Главная
-![Скриншот объекта](home.png?raw=true)
+![Скриншот объекта](screenshot/home.png?raw=true)
 
 ### Личный кабинет
-![Скриншот личного кабинета](my-property.png?raw=true)
+![Скриншот личного кабинета](screenshot/my-property.png?raw=true)
 
 ### Объекты
-![Скриншот поиска](propertys.png?raw=true)
+![Скриншот поиска](screenshot/propertys.png?raw=true)
 
 ## Установка
 

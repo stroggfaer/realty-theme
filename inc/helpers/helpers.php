@@ -823,19 +823,28 @@ function realty_get_chars_by_system_template( $system_template ) {
  * @param WP_Term $term
  * @return string
  */
-function location_thumbnail_template(WP_Term $term): string {
-    $thumbnail = get_template_directory_uri() . '/assets/images/no_city.png';
+function location_thumbnail_template(WP_Term $term): string
+{
+    $thumbnail = '/wp-content/themes/realty-theme/assets/images/no_city.png';
 
     if (function_exists('pods')) {
         $pod = pods('location', $term->term_id);
-
         if ($pod) {
             $thumbnail_field = $pod->field('thumbnail');
 
             if (!empty($thumbnail_field)) {
-                $thumbnail = is_array($thumbnail_field)
-                    ? ($thumbnail_field['guid'] ?? $thumbnail)
-                    : $thumbnail_field;
+                if (is_array($thumbnail_field)) {
+                    $attachment_id = $thumbnail_field['ID'] ?? $thumbnail_field['id'] ?? null;
+                    if ($attachment_id) {
+                        $attachment_path = get_attached_file($attachment_id);
+                        if ($attachment_path) {
+                            $thumbnail = '/' . str_replace(ABSPATH, '', $attachment_path);
+                        }
+                    }
+                } else {
+                    $url_parts = wp_parse_url($thumbnail_field);
+                    $thumbnail = $url_parts['path'] ?? $thumbnail;
+                }
             }
         }
     }

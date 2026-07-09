@@ -312,6 +312,15 @@
             // Убираем старые классы статусов и добавляем новый
             statusBadge.className = 'booking-status-badge booking-status--' + data.status_class;
         }
+        
+        // Если статус финальный (completed/cancelled) — скрываем кнопку редактирования
+        // и показываем сообщение о недоступности
+        if (data.booking_status === 'completed' || data.booking_status === 'cancelled') {
+            const editActions = viewMode.querySelector('.booking-edit-actions');
+            if (editActions) {
+                editActions.innerHTML = '<span class="booking-final-notice">Редактирование недоступно для завершённых или отменённых бронирований</span>';
+            }
+        }
     }
 
     /**

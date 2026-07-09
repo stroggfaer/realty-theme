@@ -1565,7 +1565,7 @@ function my_cabinet_ajax_update_booking_details() {
     }
 
     // Валидация статуса
-    $valid_statuses = array( 'pending', 'new', 'in_progress', 'confirmed', 'completed', 'cancelled' );
+    $valid_statuses = array( 'pending', 'new', 'in_progress', 'confirmed', 'checkin', 'completed', 'cancelled' );
     if ( ! in_array( $booking_status, $valid_statuses, true ) ) {
         wp_send_json_error( array( 'message' => 'Некорректный статус бронирования.' ) );
     }

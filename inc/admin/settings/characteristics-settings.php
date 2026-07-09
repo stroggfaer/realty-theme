@@ -82,6 +82,18 @@ function realty_characteristics_page_content() {
         'order'      => 'ASC',
     ) );
     
+    // Стабильная сортировка: если sort_order одинаковый — сортируем по имени
+    if ( ! empty( $groups ) && ! is_wp_error( $groups ) ) {
+        usort( $groups, function( $a, $b ) {
+            $order_a = (int) get_term_meta( $a->term_id, 'sort_order', true );
+            $order_b = (int) get_term_meta( $b->term_id, 'sort_order', true );
+            if ( $order_a !== $order_b ) {
+                return $order_a - $order_b;
+            }
+            return strcmp( $a->name, $b->name );
+        } );
+    }
+    
     // Текущая выбранная группа
     $current_group_id = isset( $_GET['group_id'] ) ? absint( $_GET['group_id'] ) : 0;
     
@@ -193,6 +205,18 @@ function realty_characteristics_page_content() {
                         $characteristics_query = new WP_Query( $characteristics_args );
                         $characteristics = $characteristics_query->posts;
                         $total_pages = $characteristics_query->max_num_pages;
+                        
+                        // Стабильная сортировка: при одинаковом sort_order сортируем по названию
+                        if ( ! empty( $characteristics ) ) {
+                            usort( $characteristics, function( $a, $b ) {
+                                $order_a = (int) get_post_meta( $a->ID, 'sort_order', true );
+                                $order_b = (int) get_post_meta( $b->ID, 'sort_order', true );
+                                if ( $order_a !== $order_b ) {
+                                    return $order_a - $order_b;
+                                }
+                                return strcmp( $a->post_title, $b->post_title );
+                            } );
+                        }
                         ?>
                         
                         <?php if ( $total_pages > 1 ) : ?>

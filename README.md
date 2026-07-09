@@ -36,13 +36,13 @@ WordPress-тема для сервиса аренды недвижимости �
 ## Скриншоты
 
 ### Главное
-![Скриншот объекта](https://ruszzz.ru/promo/img/home.png)
+![Скриншот объекта](home.png)
 
 ### Личный кабинет
-![Скриншот личного кабинета](https://ruszzz.ru/promo/img/my-property.png)
+![Скриншот личного кабинета](my-property.png)
 
 ### Поиск и фильтрация
-![Скриншот поиска](https://ruszzz.ru/promo/img/propertys.png)
+![Скриншот поиска](propertys.png)
 
 ## Установка
 

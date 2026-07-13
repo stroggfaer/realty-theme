@@ -825,7 +825,7 @@ function realty_get_chars_by_system_template( $system_template ) {
  */
 function location_thumbnail_template(WP_Term $term): string
 {
-    $thumbnail = '/wp-content/themes/realty-theme/assets/images/no_city.png';
+    $thumbnail = get_template_directory_uri() . '/assets/images/no_city.png';
 
     if (function_exists('pods')) {
         $pod = pods('location', $term->term_id);

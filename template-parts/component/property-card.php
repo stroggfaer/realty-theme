@@ -91,8 +91,20 @@ $show_map_location = $args['show_map_location'] ?? false;
                     echo esc_html(implode(', ', $location_names)).', ';
                     ?> <?= !empty($property_address) ? esc_html($property_address) : ''?></div>
             <?php endif; ?>
-            <?php if ($property_price) : ?>
-                <div class="property-price"><?php echo number_format($property_price, 0, '', ' '); ?> ₽<span class="hint"> / сутки</span></div>
+            <?php if ($property_price) : 
+                $period_label = '';
+                $hours_limit = get_post_meta($property_id, 'hours_limit', true);
+                if ($hours_limit) {
+                    $chars = realty_get_property_characteristics($property_id, null, [
+                        'type' => 'one',
+                        'system_temp' => 'hours_limit',
+                        'limit' => -1,
+                    ])['characteristics'] ?? [];
+                    $match = current(array_filter($chars, fn($c) => $c['title'] === $hours_limit));
+                    $period_label = $match['label'] ?? $match['title'] ?? $hours_limit;
+                }
+                ?>
+                <div class="property-price"><?php echo number_format($property_price, 0, '', ' '); ?> ₽<span class="hint"> / <?php echo esc_html($period_label ?: 'сутки'); ?></span></div>
             <?php endif; ?>
         </div>
     </div>

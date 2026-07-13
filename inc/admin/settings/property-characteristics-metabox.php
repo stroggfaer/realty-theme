@@ -569,5 +569,7 @@ function realty_render_hours_limit_inline( $post, $field, $pod ) {
         </td>
     </tr>
     <?php
+    // Nonce для сохранения поля (обязательно, иначе realty_save_hours_limit не пропустит)
+    wp_nonce_field( 'realty_save_hours_limit', 'realty_hours_limit_nonce' );
 }
 add_action( 'pods_meta_meta_post_post_row_price', 'realty_render_hours_limit_inline', 10, 3 );

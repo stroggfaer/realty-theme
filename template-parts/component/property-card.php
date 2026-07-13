@@ -95,16 +95,21 @@ $show_map_location = $args['show_map_location'] ?? false;
                 $period_label = '';
                 $hours_limit = get_post_meta($property_id, 'hours_limit', true);
                 if ($hours_limit) {
-                    $chars = realty_get_property_characteristics($property_id, null, [
-                        'type' => 'one',
-                        'system_temp' => 'hours_limit',
-                        'limit' => -1,
-                    ])['characteristics'] ?? [];
-                    $match = current(array_filter($chars, fn($c) => $c['title'] === $hours_limit));
-                    $period_label = $match['label'] ?? $match['title'] ?? $hours_limit;
+                    // Используем лёгкую функцию realty_get_chars_by_system_template — всего 2 SQL запроса
+                    // Результат кэшируется в static переменной внутри функции
+                    $period_options = realty_get_chars_by_system_template('hours_limit');
+                    foreach ($period_options as $opt) {
+                        if ($opt['value'] === $hours_limit) {
+                            $period_label = $opt['label'];
+                            break;
+                        }
+                    }
+                    if (!$period_label) {
+                        $period_label = $hours_limit;
+                    }
                 }
                 ?>
-                <div class="property-price"><?php echo number_format($property_price, 0, '', ' '); ?> ₽<span class="hint"> / <?php echo esc_html($period_label ?: 'сутки'); ?></span></div>
+                <div class="property-price"><?php echo number_format($property_price, 0, '', ' '); ?> ₽<?php if ($period_label) : ?><span class="hint"> / <?php echo esc_html($period_label); ?></span><?php endif; ?></div>
             <?php endif; ?>
         </div>
     </div>

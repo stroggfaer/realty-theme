@@ -83,10 +83,10 @@ $show_map_location = $args['show_map_location'] ?? false;
                     $location_names = array();
                     if (is_array($property_locations)) {
                         foreach ($property_locations as $location) {
-                            $location_names[] = $location['name'];
+                            if (is_array($location) && isset($location['name'])) {
+                                $location_names[] = $location['name'];
+                            }
                         }
-                    } else {
-                        $location_names[] = $property_locations['name'];
                     }
                     echo esc_html(implode(', ', $location_names)).', ';
                     ?> <?= !empty($property_address) ? esc_html($property_address) : ''?></div>

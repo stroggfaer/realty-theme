@@ -440,7 +440,6 @@ function realty_get_filter_characteristics() {
 
     return $result;
 }
-
 /**
  * Возвращает список типов жилья для фильтра
  *
